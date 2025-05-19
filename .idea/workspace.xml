@@ -4,43 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f03afcaa-f968-49fb-9fc8-8d8a39654268" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/41432371-0074-46c9-ac96-034881761ad4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/41432371-0074-46c9-ac96-034881761ad4/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/41432371-0074-46c9-ac96-034881761ad4/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/41432371-0074-46c9-ac96-034881761ad4/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/41432371-0074-46c9-ac96-034881761ad4/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b7e4bf91-8096-41b0-b2f2-bac56d04ce63/storage_v2/_src_/schema/capstone.04v6_A.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b7e4bf91-8096-41b0-b2f2-bac56d04ce63/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b7e4bf91-8096-41b0-b2f2-bac56d04ce63/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b7e4bf91-8096-41b0-b2f2-bac56d04ce63/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b7e4bf91-8096-41b0-b2f2-bac56d04ce63/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/capstone.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/capstone.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/CapstoneDesignApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/carts/entity/Analysis.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/carts/entity/Cart.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/carts/entity/CartHistories.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/carts/entity/CartItems.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/carts/entity/RecommendationResult.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/global/enums/CartStatus.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/global/enums/MartType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/global/enums/UnitType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/mart/entity/Mart.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/mart/entity/MartProductPrice.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/memo/entity/Memo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/product/entity/Product.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/recipe/entity/Recipes.class" beforeDir="false" />
-    </list>
+    <list default="true" id="f03afcaa-f968-49fb-9fc8-8d8a39654268" name="변경" comment="cicd test" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,12 +20,7 @@
       <state>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="capstone" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -106,32 +65,33 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Build capstone.executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot.CapstoneDesignApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/Desktop/My_Projects/Capstone&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build capstone.executor": "Run",
+    "Gradle.Capstone 빌드.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.CapstoneDesignApplication.executor": "Run",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/user/Desktop/My_Projects/Capstone/build.gradle",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "프로젝트",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
@@ -165,11 +125,45 @@
       <workItem from="1746808914799" duration="1970000" />
       <workItem from="1747634542444" duration="127000" />
       <workItem from="1747634683577" duration="26000" />
+      <workItem from="1747634786152" duration="644000" />
     </task>
+    <task id="LOCAL-00001" summary="gradle 설정 수정">
+      <option name="closed" value="true" />
+      <created>1747634975414</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1747634975414</updated>
+    </task>
+    <task id="LOCAL-00002" summary="cicd test">
+      <option name="closed" value="true" />
+      <created>1747635316748</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1747635316748</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="gradle 설정 수정" />
+    <MESSAGE value="cicd test" />
+    <option name="LAST_COMMIT_MESSAGE" value="cicd test" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
