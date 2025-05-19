@@ -5,6 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f03afcaa-f968-49fb-9fc8-8d8a39654268" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/CapstoneDesignApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/carts/entity/Analysis.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/carts/entity/Cart.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/carts/entity/CartHistories.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/carts/entity/CartItems.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/carts/entity/RecommendationResult.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/global/enums/CartStatus.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/global/enums/MartType.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/global/enums/UnitType.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/mart/entity/Mart.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/mart/entity/MartProductPrice.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/memo/entity/Memo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/product/entity/Product.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/classes/com/team901/CapstoneDesign/recipe/entity/Recipes.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/capstone.main.iml" beforeDir="false" />
@@ -134,7 +150,7 @@
       <workItem from="1746717058942" duration="4666000" />
       <workItem from="1746808914799" duration="1970000" />
       <workItem from="1747588204312" duration="1123000" />
-      <workItem from="1747629404776" duration="2249000" />
+      <workItem from="1747629404776" duration="2562000" />
     </task>
     <servers />
   </component>
