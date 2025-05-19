@@ -18,6 +18,7 @@ env:
   S3_BUCKET_NAME: my-github-actions-s3-bucket-dd
   CODE_DEPLOY_APPLICATION_NAME: my-codedeploy-app
   CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: my-code-deployment-group
+  working-directory: ./
 
 permissions:
   contents: read
