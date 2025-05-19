@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -13,13 +14,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Table(name = "analysis")
 public class Analysis {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long analysisId;
 
-    @ManyToOne
-    @JoinColumn(name = "cart_id")
+    @OneToOne
+    @JoinColumn(name = "cart_id", nullable = false)
     private Cart cart;
 
     @Column(nullable = false)
@@ -42,4 +42,7 @@ public class Analysis {
 
     @Column(nullable = true)
     private Double userLongitude;
+
+    @OneToMany(mappedBy = "analysis", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<RecommendationResult> recommendationResults;
 }
