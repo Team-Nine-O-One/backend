@@ -2,7 +2,7 @@ spring:
   application:
     name: CapstoneDesign
   config:
-    import: application-dev.yml
+    import: optional:application-dev.yml
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

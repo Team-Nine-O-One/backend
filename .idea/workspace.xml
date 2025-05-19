@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f03afcaa-f968-49fb-9fc8-8d8a39654268" name="변경" comment="fix: Hibernate dialect 설정 위치 수정">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-    </list>
+    <list default="true" id="f03afcaa-f968-49fb-9fc8-8d8a39654268" name="변경" comment="chore: .gitignore에 민감 정보 파일 추가" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -140,7 +136,7 @@
       <workItem from="1747634542444" duration="127000" />
       <workItem from="1747634683577" duration="26000" />
       <workItem from="1747634786152" duration="3212000" />
-      <workItem from="1747679992293" duration="4298000" />
+      <workItem from="1747679992293" duration="5139000" />
     </task>
     <task id="LOCAL-00001" summary="gradle 설정 수정">
       <option name="closed" value="true" />
@@ -182,7 +178,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747680526026</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="chore: .gitignore에 민감 정보 파일 추가">
+      <option name="closed" value="true" />
+      <created>1747689845813</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1747689845813</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,7 +208,8 @@
     <MESSAGE value="cicd test" />
     <MESSAGE value="feat: actuator health check 설정 추가" />
     <MESSAGE value="fix: Hibernate dialect 설정 위치 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: Hibernate dialect 설정 위치 수정" />
+    <MESSAGE value="chore: .gitignore에 민감 정보 파일 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: .gitignore에 민감 정보 파일 추가" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
