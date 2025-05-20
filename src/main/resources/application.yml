@@ -1,12 +1,14 @@
 spring:
   application:
     name: CapstoneDesign
+  config:
+    import: optional:application-dev.yml
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/capstone
-    username: root
-    password:
+    url: ${DB_URL}
+    username: admin
+    password: ${DB_PASSWORD}
 
   jpa:
     hibernate:
@@ -14,6 +16,16 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
 
-  hibernate:
-    dialect: org.hibernate.dialect.MySQL8Dialect
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+server:
+  port: 8080
