@@ -1,14 +1,12 @@
 spring:
   application:
     name: CapstoneDesign
-  config:
-    import: optional:application-dev.yml
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ${DB_URL}
-    username: admin
-    password: ${DB_PASSWORD}
+    url: jdbc:mysql://127.0.0.1:3306/capstone
+    username: root
+    password:
 
   jpa:
     hibernate:
@@ -16,7 +14,9 @@ spring:
     properties:
       hibernate:
         format_sql: true
-        dialect: org.hibernate.dialect.MySQL8Dialect
+
+  hibernate:
+    dialect: org.hibernate.dialect.MySQL8Dialect
 
 
 management:
@@ -29,3 +29,7 @@ management:
       show-details: always
 server:
   port: 8080
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
