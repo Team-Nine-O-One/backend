@@ -1,7 +1,6 @@
 package com.team901.CapstoneDesign.carts.entity;
 
 import com.team901.CapstoneDesign.global.enums.CartStatus;
-import com.team901.CapstoneDesign.memo.entity.Memo;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,10 +19,6 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cartId;
 
-    @ManyToOne
-    @JoinColumn(name = "memo_id")
-    private Memo memo;
-
     @Column(nullable = false)
     private String userId;
 
@@ -39,4 +34,7 @@ public class Cart {
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
+
+    @OneToOne(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Analysis analysis;
 }

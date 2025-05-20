@@ -4,7 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f03afcaa-f968-49fb-9fc8-8d8a39654268" name="변경" comment="chore: .gitignore에 민감 정보 파일 추가" />
+    <list default="true" id="f03afcaa-f968-49fb-9fc8-8d8a39654268" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/.github/workflows/ci-cd.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/eadd22bf-66d4-4089-94c3-2c44ad6f088e.corrupted.20250520-114850.reason.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/eadd22bf-66d4-4089-94c3-2c44ad6f088e.corrupted.20250520-114850.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/appspec.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/start.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/stop.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b7e4bf91-8096-41b0-b2f2-bac56d04ce63.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/eadd22bf-66d4-4089-94c3-2c44ad6f088e.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b7e4bf91-8096-41b0-b2f2-bac56d04ce63/storage_v2/_src_/schema/capstone.04v6_A.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b7e4bf91-8096-41b0-b2f2-bac56d04ce63/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/eadd22bf-66d4-4089-94c3-2c44ad6f088e/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b7e4bf91-8096-41b0-b2f2-bac56d04ce63/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/eadd22bf-66d4-4089-94c3-2c44ad6f088e/storage_v2/_src_/schema/mysql.osA4Bg.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b7e4bf91-8096-41b0-b2f2-bac56d04ce63/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/eadd22bf-66d4-4089-94c3-2c44ad6f088e/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b7e4bf91-8096-41b0-b2f2-bac56d04ce63/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/eadd22bf-66d4-4089-94c3-2c44ad6f088e/storage_v2/_src_/schema/sys.zb4BAA.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,23 +73,23 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
-    &quot;lastFilter&quot;: {
+  &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
     &quot;assignee&quot;: &quot;sijin1017&quot;
-    }
-    }</component>
+  }
+}</component>
   <component name="GithubPullRequestsUISettings">{
-    &quot;selectedUrlAndAccountId&quot;: {
+  &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Team-Nine-O-One/backend.git&quot;,
     &quot;accountId&quot;: &quot;42fa31a2-7cc6-447e-b65e-650110522cc2&quot;
-    }
-    }</component>
+  }
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
-    &quot;associatedIndex&quot;: 6
-    }</component>
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2woIgQB3JCS2zPvUkTOgXeqPOMr" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -73,33 +98,26 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Gradle.Build capstone.executor": "Run",
-    "Gradle.Capstone 빌드.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.CapstoneDesignApplication.executor": "Run",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "Merging feat/2",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/user/Desktop/My_Projects/Capstone/build.gradle",
+    "last_opened_file_path": "/Users/sireal/Desktop/capstone",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "프로젝트",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
     "vue.rearranger.settings.migration": "true"
-  },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
-    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -115,6 +133,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -133,83 +159,11 @@
       <workItem from="1746715551242" duration="1486000" />
       <workItem from="1746717058942" duration="4666000" />
       <workItem from="1746808914799" duration="1970000" />
-      <workItem from="1747634542444" duration="127000" />
-      <workItem from="1747634683577" duration="26000" />
-      <workItem from="1747634786152" duration="3212000" />
-      <workItem from="1747679992293" duration="5139000" />
     </task>
-    <task id="LOCAL-00001" summary="gradle 설정 수정">
-      <option name="closed" value="true" />
-      <created>1747634975414</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1747634975414</updated>
-    </task>
-    <task id="LOCAL-00002" summary="cicd test">
-      <option name="closed" value="true" />
-      <created>1747635316748</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1747635316748</updated>
-    </task>
-    <task id="LOCAL-00003" summary="cicd test">
-      <option name="closed" value="true" />
-      <created>1747635444621</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1747635444621</updated>
-    </task>
-    <task id="LOCAL-00004" summary="feat: actuator health check 설정 추가">
-      <option name="closed" value="true" />
-      <created>1747680369653</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1747680369653</updated>
-    </task>
-    <task id="LOCAL-00005" summary="fix: Hibernate dialect 설정 위치 수정">
-      <option name="closed" value="true" />
-      <created>1747680526026</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1747680526026</updated>
-    </task>
-    <task id="LOCAL-00006" summary="chore: .gitignore에 민감 정보 파일 추가">
-      <option name="closed" value="true" />
-      <created>1747689845813</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1747689845813</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="gradle 설정 수정" />
-    <MESSAGE value="cicd test" />
-    <MESSAGE value="feat: actuator health check 설정 추가" />
-    <MESSAGE value="fix: Hibernate dialect 설정 위치 수정" />
-    <MESSAGE value="chore: .gitignore에 민감 정보 파일 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: .gitignore에 민감 정보 파일 추가" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

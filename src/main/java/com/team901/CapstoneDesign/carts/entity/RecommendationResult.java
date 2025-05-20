@@ -1,14 +1,11 @@
 package com.team901.CapstoneDesign.carts.entity;
 
 import com.team901.CapstoneDesign.mart.entity.Mart;
-import com.team901.CapstoneDesign.memo.entity.Memo;
 import com.team901.CapstoneDesign.product.entity.Product;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.LocalDateTime;
 
 
 @Entity

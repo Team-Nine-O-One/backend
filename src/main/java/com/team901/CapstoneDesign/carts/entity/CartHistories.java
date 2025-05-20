@@ -1,6 +1,5 @@
 package com.team901.CapstoneDesign.carts.entity;
 
-import com.team901.CapstoneDesign.memo.entity.Memo;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
