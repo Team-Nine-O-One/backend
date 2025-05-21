@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f03afcaa-f968-49fb-9fc8-8d8a39654268" name="변경" comment="feat : GPT API 연동">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="f03afcaa-f968-49fb-9fc8-8d8a39654268" name="변경" comment="build.gradle 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/start.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/start.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/stop.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/stop.sh" afterDir="false" />
     </list>
@@ -204,7 +202,7 @@
       <workItem from="1746715551242" duration="1486000" />
       <workItem from="1746717058942" duration="4666000" />
       <workItem from="1746808914799" duration="1970000" />
-      <workItem from="1747793369467" duration="431000" />
+      <workItem from="1747793369467" duration="1679000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore 수정">
       <option name="closed" value="true" />
@@ -246,7 +244,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747764061746</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="build.gradle 수정">
+      <option name="closed" value="true" />
+      <created>1747794211511</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1747794211511</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -279,7 +285,8 @@
     <MESSAGE value="application-dev.yml 수정, start.sh 수정" />
     <MESSAGE value=" start.sh 수정" />
     <MESSAGE value="feat : GPT API 연동" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat : GPT API 연동" />
+    <MESSAGE value="build.gradle 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="build.gradle 수정" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
