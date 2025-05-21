@@ -55,6 +55,18 @@ public class AnalysisService {
         List<Cart> carts = cartRepository.findByUserId(userId);
 
         return carts.stream().map(cart -> {
+
+            // 테스트용 임시 추가 함수 ( 알고리즘 구현 후 삭제 )
+            if (cart.getAnalysis() == null || cart.getAnalysis().getRecommendationResults() == null) {
+                return new CartSummaryResponseDto(
+                        cart.getCartId(),
+                        cart.getTitle(),
+                        List.of(), // 빈 마트 목록
+                        0,
+                        0.0
+                );
+            }
+
             Map<String, List<RecommendationResult>> groupedByMart = cart.getAnalysis().getRecommendationResults()
                     .stream()
                     .collect(Collectors.groupingBy(result -> result.getMart().getName()));
@@ -99,6 +111,11 @@ public class AnalysisService {
 
         Analysis analysis = cart.getAnalysis();
 
+        //테스트용 임시 추가 함수 ( 알고리즘 구현 후 삭제 )
+        if (analysis == null || analysis.getRecommendationResults() == null || analysis.getRecommendationResults().isEmpty()) {
+            return new CartDetailResponseDto(0, 0, List.of());
+        }
+
         List<MartDetailDto> martDetails = analysis.getRecommendationResults().stream()
                 .collect(Collectors.groupingBy(result -> result.getMart().getName()))
                 .entrySet().stream()
@@ -131,5 +148,14 @@ public class AnalysisService {
     }
 
 
+    public void createCartForTest(CartTestRequestDto requestDto) {
+        Cart cart = new Cart();
+        cart.setUserId(requestDto.getUserId());
+        cart.setTitle(requestDto.getTitle());
+        cart.setStatus(CartStatus.IN_PROGRESS);
+        cart.setCreatedAt(LocalDateTime.now());
+
+        cartRepository.save(cart);
+    }
 
 }
