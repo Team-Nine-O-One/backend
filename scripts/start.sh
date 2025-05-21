@@ -11,6 +11,13 @@ TIME_NOW=$(date +%c)
 
 LATEST_JAR=$(ls -t $PROJECT_ROOT/build/libs/capstone-0.0.1-SNAPSHOT.jar 2>/dev/null | head -n 1)
 
+mkdir -p "$PROJECT_ROOT"
+
+if [ -z "$LATEST_JAR" ]; then
+  echo "JAR 파일이 존재하지 않습니다."
+  exit 1
+fi
+
 # build 파일 복사
 echo "$TIME_NOW > $LATEST_JAR -> $JAR_FILE 복사" >> $DEPLOY_LOG
 cp "$LATEST_JAR" "$JAR_FILE"
