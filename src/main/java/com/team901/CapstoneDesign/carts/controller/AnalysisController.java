@@ -1,9 +1,6 @@
 package com.team901.CapstoneDesign.carts.controller;
 
-import com.team901.CapstoneDesign.carts.dto.AnalysisRequestDto;
-import com.team901.CapstoneDesign.carts.dto.AnalysisResponseDto;
-import com.team901.CapstoneDesign.carts.dto.CartDetailResponseDto;
-import com.team901.CapstoneDesign.carts.dto.CartSummaryResponseDto;
+import com.team901.CapstoneDesign.carts.dto.*;
 import com.team901.CapstoneDesign.carts.service.AnalysisService;
 
 import lombok.RequiredArgsConstructor;
@@ -37,6 +34,14 @@ public class AnalysisController {
         return ResponseEntity.ok(responseDto);
     }
 
+
+    @PostMapping("/test")
+    public ResponseEntity<String> createCartForTest(@RequestBody CartTestRequestDto requestDto) {
+        System.out.println(">> DTO: " + requestDto.getUserId() + " / " + requestDto.getTitle());
+        analysisService.createCartForTest(requestDto);
+        return ResponseEntity.ok("테스트용 Cart 생성 완료");
+
+    }
 
 
 }
