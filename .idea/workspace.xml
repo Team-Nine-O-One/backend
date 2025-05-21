@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f03afcaa-f968-49fb-9fc8-8d8a39654268" name="변경" comment="디비 주소 변경">
+    <list default="true" id="f03afcaa-f968-49fb-9fc8-8d8a39654268" name="변경" comment="데이터베이스 연동 확인">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/Test/TestNumber.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/Test/TestNumberController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/Test/TestNumberRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
@@ -203,7 +206,7 @@
       <workItem from="1746808914799" duration="1970000" />
       <workItem from="1747793369467" duration="3721000" />
       <workItem from="1747797467290" duration="332000" />
-      <workItem from="1747798111711" duration="849000" />
+      <workItem from="1747798111711" duration="1256000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore 수정">
       <option name="closed" value="true" />
@@ -340,7 +343,8 @@
     <MESSAGE value="복구" />
     <MESSAGE value="test" />
     <MESSAGE value="디비 주소 변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="디비 주소 변경" />
+    <MESSAGE value="데이터베이스 연동 확인" />
+    <option name="LAST_COMMIT_MESSAGE" value="데이터베이스 연동 확인" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
