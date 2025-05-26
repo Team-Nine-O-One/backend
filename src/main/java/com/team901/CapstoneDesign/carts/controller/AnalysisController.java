@@ -64,6 +64,14 @@ public class AnalysisController {
         return ResponseEntity.ok(responseDto);
     }
 
+    @Operation(summary = "히스토리 삭제", description = "CONFIRMED 또는 COMPLETED 상태의 장바구니 분석을 삭제")
+    @DeleteMapping("/{cartId}")
+    public ResponseEntity<String> deleteCart(@PathVariable Long cartId,
+                                             @RequestParam("user_id") String userId) {
+        analysisService.deleteCart(cartId, userId);
+        return ResponseEntity.ok("장바구니가 삭제되었습니다.");
+    }
+
 
 }
 
