@@ -171,6 +171,10 @@ public class AnalysisService {
         Cart cart = cartRepository.findById(cartId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 장바구니 존재 X"));
 
+         if (!cart.getUserId().equals(userId)) {
+             throw new IllegalArgumentException("해당 장바구니는 사용자 소유가 아닙니다.");
+         }
+
         cart.setStatus(CartStatus.CONFIRMED);
         cart.setUpdatedAt(LocalDateTime.now());
         cartRepository.save(cart);
@@ -186,6 +190,11 @@ public class AnalysisService {
     public CompleteCartResponseDto completeCart(Long cartId, String userId) {
         Cart cart = cartRepository.findById(cartId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 장바구니 존재 X"));
+
+
+         if (!cart.getUserId().equals(userId)) {
+             throw new IllegalArgumentException("해당 장바구니는 사용자 소유가 아닙니다.");
+         }
 
         cart.setStatus(CartStatus.COMPLETED);
         cart.setUpdatedAt(LocalDateTime.now());
