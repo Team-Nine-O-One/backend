@@ -12,5 +12,6 @@ public class CartDetailResponseDto {
     private int onlineCount;
     private int offlineCount;
     private List<MartDetailDto> marts;
+    private String status;
 }
 
