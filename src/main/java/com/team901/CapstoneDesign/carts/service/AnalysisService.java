@@ -182,4 +182,21 @@ public class AnalysisService {
         );
     }
 
+
+    public CompleteCartResponseDto completeCart(Long cartId, String userId) {
+        Cart cart = cartRepository.findById(cartId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 장바구니 존재 X"));
+
+        cart.setStatus(CartStatus.COMPLETED);
+        cart.setUpdatedAt(LocalDateTime.now());
+        cartRepository.save(cart);
+
+        return new CompleteCartResponseDto(
+                cart.getCartId(),
+                cart.getStatus().name(),
+                cart.getUpdatedAt()
+        );
+    }
+
+
 }

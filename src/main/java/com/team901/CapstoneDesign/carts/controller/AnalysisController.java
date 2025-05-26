@@ -55,5 +55,15 @@ public class AnalysisController {
         return ResponseEntity.ok(responseDto);
     }
 
+    @Operation(summary = "장보기 완료", description = "사용자가 장을 본 후 완료 처리 및 히스토리에 저장")
+    @PostMapping("/{cartId}/complete")
+    public ResponseEntity<CompleteCartResponseDto> completeCart(
+            @PathVariable Long cartId,
+            @RequestParam("user_id") String userId) {
+        CompleteCartResponseDto responseDto = analysisService.completeCart(cartId, userId);
+        return ResponseEntity.ok(responseDto);
+    }
+
+
 }
 
