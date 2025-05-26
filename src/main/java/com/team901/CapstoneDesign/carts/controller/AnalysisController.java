@@ -46,6 +46,14 @@ public class AnalysisController {
 
     }
 
+    @Operation(summary = "분석 결과 확정", description = "사용자가 분석 결과를 최종적으로 확정")
+    @PostMapping("/{cartId}/confirm")
+    public ResponseEntity<ConfirmCartResponseDto> confirmCart(
+            @PathVariable Long cartId,
+            @RequestParam("user_id") String userId) {
+        ConfirmCartResponseDto responseDto = analysisService.confirmCart(cartId, userId);
+        return ResponseEntity.ok(responseDto);
+    }
 
 }
 

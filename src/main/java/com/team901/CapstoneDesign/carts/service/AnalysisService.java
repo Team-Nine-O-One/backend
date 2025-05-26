@@ -63,7 +63,9 @@ public class AnalysisService {
                         cart.getTitle(),
                         List.of(), // 빈 마트 목록
                         0,
-                        0.0
+                        0.0,
+                        cart.getStatus().name(),
+                        cart.getUpdatedAt()
                 );
             }
 
@@ -97,7 +99,9 @@ public class AnalysisService {
                     cart.getTitle(),
                     martSummaries,
                     0,
-                    totalPrice
+                    totalPrice,
+                    cart.getStatus().name(),
+                    cart.getUpdatedAt()
             );
         }).collect(Collectors.toList());
     }
@@ -113,7 +117,7 @@ public class AnalysisService {
 
         //테스트용 임시 추가 함수 ( 알고리즘 구현 후 삭제 )
         if (analysis == null || analysis.getRecommendationResults() == null || analysis.getRecommendationResults().isEmpty()) {
-            return new CartDetailResponseDto(0, 0, List.of());
+            return new CartDetailResponseDto(0, 0, List.of(), cart.getStatus().name());
         }
 
         List<MartDetailDto> martDetails = analysis.getRecommendationResults().stream()
@@ -144,7 +148,11 @@ public class AnalysisService {
         int onlineCount = (int) martDetails.stream().filter(m -> m.getDistance() == 0.0).count();
         int offlineCount = martDetails.size() - onlineCount;
 
-        return new CartDetailResponseDto(onlineCount, offlineCount, martDetails);
+        return new CartDetailResponseDto(
+                onlineCount,
+                offlineCount,
+                martDetails,
+                cart.getStatus().name());
     }
 
 
@@ -156,6 +164,22 @@ public class AnalysisService {
         cart.setCreatedAt(LocalDateTime.now());
 
         cartRepository.save(cart);
+    }
+
+
+    public ConfirmCartResponseDto confirmCart(Long cartId, String userId) {
+        Cart cart = cartRepository.findById(cartId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 장바구니 존재 X"));
+
+        cart.setStatus(CartStatus.CONFIRMED);
+        cart.setUpdatedAt(LocalDateTime.now());
+        cartRepository.save(cart);
+
+        return new ConfirmCartResponseDto(
+                cart.getCartId(),
+                cart.getStatus().name(),
+                cart.getUpdatedAt()
+        );
     }
 
 }

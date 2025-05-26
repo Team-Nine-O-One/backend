@@ -4,11 +4,17 @@ spring:
   config:
     import: optional:application-dev.yml
 
+#  datasource:
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#      url: jdbc:mysql://database-901.clokoka2yxih.ap-northeast-2.rds.amazonaws.com:3306/capstone
+#      username: admin
+#      password: 20250519
+
   datasource:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://database-901.clokoka2yxih.ap-northeast-2.rds.amazonaws.com:3306/capstone
-      username: admin
-      password: 20250519
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/capstone
+    username: root
+    password:
 
   jpa:
     hibernate:
