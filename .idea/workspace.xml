@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f03afcaa-f968-49fb-9fc8-8d8a39654268" name="변경" comment="스웨거 summary 추가">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+    <list default="true" id="f03afcaa-f968-49fb-9fc8-8d8a39654268" name="변경" comment="장바구니 소유 로직 추가">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/carts/controller/AnalysisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/carts/controller/AnalysisController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/carts/dto/CartDetailResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/carts/dto/CartDetailResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/carts/dto/CartSummaryResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/carts/dto/CartSummaryResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/carts/entity/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/carts/entity/Cart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/carts/service/AnalysisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/carts/service/AnalysisService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/global/enums/CartStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/global/enums/CartStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +72,7 @@
   }
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="Security Analysis" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -101,7 +96,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.CapstoneDesignApplication.executor": "Run",
-    "git-widget-placeholder": "feat/9",
+    "git-widget-placeholder": "feat/11",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/sireal/Desktop/capstone",
     "node.js.detected.package.eslint": "true",
@@ -194,7 +189,7 @@
       <workItem from="1747797467290" duration="332000" />
       <workItem from="1747798111711" duration="1256000" />
       <workItem from="1747808691040" duration="7176000" />
-      <workItem from="1748233440009" duration="3821000" />
+      <workItem from="1748233440009" duration="6266000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore 수정">
       <option name="closed" value="true" />
@@ -308,7 +303,31 @@
       <option name="project" value="LOCAL" />
       <updated>1747814601450</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="분석 결과 확정 api 테스트 완료">
+      <option name="closed" value="true" />
+      <created>1748270871966</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1748270871966</updated>
+    </task>
+    <task id="LOCAL-00016" summary="장보기 완료 및 히스토리 저장 api 테스트 완료">
+      <option name="closed" value="true" />
+      <created>1748274725249</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1748274725249</updated>
+    </task>
+    <task id="LOCAL-00017" summary="장바구니 소유 로직 추가">
+      <option name="closed" value="true" />
+      <created>1748274899485</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1748274899485</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -350,7 +369,10 @@
     <MESSAGE value="데이터베이스 연동 확인" />
     <MESSAGE value="임시 cart 생성 api 구현" />
     <MESSAGE value="스웨거 summary 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="스웨거 summary 추가" />
+    <MESSAGE value="분석 결과 확정 api 테스트 완료" />
+    <MESSAGE value="장보기 완료 및 히스토리 저장 api 테스트 완료" />
+    <MESSAGE value="장바구니 소유 로직 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="장바구니 소유 로직 추가" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
