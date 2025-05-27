@@ -1,6 +1,8 @@
 package com.team901.CapstoneDesign.GPT.dto;
 
+import lombok.Getter;
 
+@Getter
 public class Product {
     private int num;
     private String title;
@@ -14,21 +16,6 @@ public class Product {
         this.price = price;
     }
 
-    public int getNum() {
-        return num;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-//    public String getMall() {
-//        return mall;
-//    }
-
-    public String getPrice() {
-        return price;
-    }
 
     @Override
     public String toString() {
