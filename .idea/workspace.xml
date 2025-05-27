@@ -5,10 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f03afcaa-f968-49fb-9fc8-8d8a39654268" name="변경" comment="장바구니 소유 로직 추가">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/ChromeDriverConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/controller/CrawlerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/dto/Content.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/dto/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/service/BlogCrawler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/service/IngredientExtractionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/service/NaverBlogCrawler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/service/SeleniumNaverShoppingCrawler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/carts/controller/AnalysisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/carts/controller/AnalysisController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/carts/entity/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/carts/entity/Cart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/carts/service/AnalysisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/carts/service/AnalysisService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/GPTClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPTClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/GPTRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/dto/GPTRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/GPTResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/dto/GPTResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/GPTService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/service/GPTService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/dto/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/config/GPTConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPTConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/config/GPTFeignConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPTFeignConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,12 +45,7 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="capstone" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -96,7 +105,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.CapstoneDesignApplication.executor": "Run",
-    "git-widget-placeholder": "feat/11",
+    "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/sireal/Desktop/capstone",
     "node.js.detected.package.eslint": "true",

@@ -1,4 +1,4 @@
-package com.team901.CapstoneDesign.config;
+package com.team901.CapstoneDesign;
 
 import feign.RequestInterceptor;
 import org.springframework.beans.factory.annotation.Value;

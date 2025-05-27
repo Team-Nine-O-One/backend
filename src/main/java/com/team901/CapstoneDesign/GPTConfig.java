@@ -1,4 +1,4 @@
-package com.team901.CapstoneDesign.config;
+package com.team901.CapstoneDesign;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

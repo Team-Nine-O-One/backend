@@ -1,4 +1,4 @@
-package com.team901.CapstoneDesign.GPT;
+package com.team901.CapstoneDesign.GPT.dto;
 
 
 import lombok.*;

@@ -1,9 +1,9 @@
-package com.team901.CapstoneDesign.GPT;
+package com.team901.CapstoneDesign.GPT.service;
 
 
-import com.team901.CapstoneDesign.GPT.GPTClient;
-import com.team901.CapstoneDesign.GPT.GPTRequest;
-import com.team901.CapstoneDesign.GPT.GPTResponse;
+import com.team901.CapstoneDesign.GPTClient;
+import com.team901.CapstoneDesign.GPT.dto.GPTRequest;
+import com.team901.CapstoneDesign.GPT.dto.GPTResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

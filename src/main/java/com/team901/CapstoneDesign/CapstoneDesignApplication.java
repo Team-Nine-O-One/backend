@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-@EnableFeignClients(basePackages = "com.team901.CapstoneDesign.GPT")
+@EnableFeignClients(basePackages = "com.team901.CapstoneDesign")
 public class CapstoneDesignApplication {
 
 	public static void main(String[] args) {
