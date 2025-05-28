@@ -3,6 +3,8 @@ package com.team901.CapstoneDesign.carts.controller;
 import com.team901.CapstoneDesign.carts.dto.*;
 import com.team901.CapstoneDesign.carts.service.AnalysisService;
 
+import com.team901.CapstoneDesign.mart.repository.MartRepository;
+import com.team901.CapstoneDesign.product.repository.ProductRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,12 +19,24 @@ public class AnalysisController {
 
     private final AnalysisService analysisService;
 
-    @Operation(summary = "분석 요청 생성 (아직 사용 x)", description = "메모 내용을 기반으로 분석 생성")
+    @Operation(summary = "분석 요청 생성", description = "메모 내용을 기반으로 분석 생성")
     @PostMapping
     public ResponseEntity<AnalysisResponseDto> createAnalysis(@RequestBody AnalysisRequestDto requestDto) {
         AnalysisResponseDto responseDto = analysisService.createAnalysis(requestDto);
         return ResponseEntity.status(201).body(responseDto);
     }
+
+
+    @PatchMapping("/{cartId}/reanalyze")
+    @Operation(summary = "분석 재실행", description = "가중치 변경에 따른 재분석 실행")
+    public ResponseEntity<AnalysisResponseDto> reanalyzeCart(
+            @PathVariable Long cartId,
+            @RequestBody ReanalyzeRequestDto requestDto
+    ) {
+        AnalysisResponseDto response = analysisService.reanalyze(cartId, requestDto);
+        return ResponseEntity.ok(response);
+    }
+
 
     @Operation(summary = "모든 분석 목록 조회", description = "모든 장바구니 분석 목록을 조회")
     @GetMapping

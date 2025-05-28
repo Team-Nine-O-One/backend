@@ -42,4 +42,8 @@ public class RecommendationResult {
 
     @Column(nullable = true)
     private Double deliveryFee;
+
+    @Column(nullable = true)
+    private Double score; // 가격 * a + 거리 * b 계산 결과
+
 }
