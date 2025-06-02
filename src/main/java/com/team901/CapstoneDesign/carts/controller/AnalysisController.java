@@ -3,6 +3,7 @@ package com.team901.CapstoneDesign.carts.controller;
 import com.team901.CapstoneDesign.carts.dto.*;
 import com.team901.CapstoneDesign.carts.service.AnalysisService;
 
+import com.team901.CapstoneDesign.global.enums.CartStatus;
 import com.team901.CapstoneDesign.mart.repository.MartRepository;
 import com.team901.CapstoneDesign.product.repository.ProductRepository;
 import io.swagger.v3.oas.annotations.Operation;
@@ -38,12 +39,16 @@ public class AnalysisController {
     }
 
 
-    @Operation(summary = "모든 분석 목록 조회", description = "모든 장바구니 분석 목록을 조회")
     @GetMapping
-    public ResponseEntity<List<CartSummaryResponseDto>> getAllCarts(@RequestParam("user_id") String userId) {
-        List<CartSummaryResponseDto> responseDtos = analysisService.getAllCartsByUser(userId);
+    @Operation(summary = "분석 목록 조회", description = "사용자의 전체 또는 상태별 분석 조회")
+    public ResponseEntity<List<CartSummaryResponseDto>> getCarts(
+            @RequestParam("user_id") String userId,
+            @RequestParam(value = "status", required = false) CartStatus status
+    ) {
+        List<CartSummaryResponseDto> responseDtos = analysisService.getCartsByUserAndStatus(userId, status);
         return ResponseEntity.ok(responseDtos);
     }
+
 
     @Operation(summary = "특정 분석 상세 조회", description = "cartId에 해당하는 상세 분석 정보를 조회")
     @GetMapping("/{cartId}")
