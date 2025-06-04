@@ -6,9 +6,15 @@ import com.team901.CapstoneDesign.carts.entity.Cart;
 import com.team901.CapstoneDesign.carts.entity.RecommendationResult;
 import com.team901.CapstoneDesign.carts.repository.AnalysisRepository;
 import com.team901.CapstoneDesign.carts.repository.CartRepository;
+import com.team901.CapstoneDesign.carts.repository.RecommendationResultRepository;
 import com.team901.CapstoneDesign.global.enums.CartStatus;
+import com.team901.CapstoneDesign.global.enums.MartType;
 import com.team901.CapstoneDesign.mart.dto.MartDetailDto;
+import com.team901.CapstoneDesign.mart.entity.Mart;
+import com.team901.CapstoneDesign.mart.repository.MartRepository;
 import com.team901.CapstoneDesign.product.dto.ProductDetailDto;
+import com.team901.CapstoneDesign.product.entity.Product;
+import com.team901.CapstoneDesign.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,11 +29,12 @@ public class AnalysisService {
 
     private final AnalysisRepository analysisRepository;
     private final CartRepository cartRepository;
+    private final RecommendationResultRepository recommendationResultRepository;
+    private final MartRepository martRepository; // 추가
+    private final ProductRepository productRepository; // 추가
 
 
     public AnalysisResponseDto createAnalysis(AnalysisRequestDto requestDto) {
-
-        // Cart 생성
         Cart cart = new Cart();
         cart.setUserId(requestDto.getUserId());
         cart.setTitle(requestDto.getMemo());
@@ -35,24 +42,114 @@ public class AnalysisService {
         cart.setCreatedAt(LocalDateTime.now());
         cartRepository.save(cart);
 
-        // Analysis 생성
         Analysis analysis = new Analysis();
         analysis.setCart(cart);
         analysis.setUserId(requestDto.getUserId());
         analysis.setCreatedAt(LocalDateTime.now());
+        analysis.setPriceWeight(0.5);
+        analysis.setDistanceWeight(0.5);
+        analysis.setIsConfirmed(false); // 초기엔 false
         analysisRepository.save(analysis);
+
+        // 크롤링 데이터 & GPT 결과 기반 최적 추천 로직 호출
+        // List<RecommendationResult> results = recommendationEngine.generate(cart, analysis);
+
+
+        // 임시로 로직 돌아갔다고 가정 후 데이터 넣은 것 !!!!!
+        List<RecommendationResult> results = List.of(
+                createMockResult(analysis, "우유", "쿠팡", 10000.0, 0.0, 0.0),
+                createMockResult(analysis, "당근", "쿠팡", 13400.0, 0.0, 0.0),
+                createMockResult(analysis, "파", "이마트", 7000.0, 2.3, null),
+                createMockResult(analysis, "마늘", "이마트", 9800.0, 2.3, null)
+        );
+        recommendationResultRepository.saveAll(results);
+
+
+        // 연관 관계 세팅
+        for (RecommendationResult result : results) {
+            result.setAnalysis(analysis);
+        }
+
+        // 저장
+        recommendationResultRepository.saveAll(results);
 
         return new AnalysisResponseDto(
                 cart.getCartId(),
                 requestDto.getUserId(),
                 requestDto.getMemo(),
-                CartStatus.IN_PROGRESS.name(),
+                cart.getStatus().name(),
                 cart.getCreatedAt()
         );
     }
 
-    public List<CartSummaryResponseDto> getAllCartsByUser(String userId) {
-        List<Cart> carts = cartRepository.findByUserId(userId);
+    // 임시 분석 생성 mock 데이터 넣기 --> 추후 지울것임
+    private RecommendationResult createMockResult(
+            Analysis analysis, String productName, String martName, double price, Double distance, Double deliveryFee) {
+
+        Product product = new Product();
+        product.setName(productName);
+        productRepository.save(product);
+
+        Mart mart = new Mart();
+        mart.setName(martName);
+        mart.setType(martName.equals("쿠팡") ? MartType.ONLINE : MartType.OFFLINE); // 예시
+        martRepository.save(mart);
+
+        RecommendationResult result = new RecommendationResult();
+        result.setAnalysis(analysis);
+        result.setMart(mart);
+        result.setProduct(product);
+        result.setTotalPrice(price);
+        result.setDistance(distance);
+        result.setDeliveryFee(deliveryFee);
+        return result;
+    }
+
+
+    public AnalysisResponseDto reanalyze(Long cartId, ReanalyzeRequestDto requestDto) {
+        Cart cart = cartRepository.findById(cartId)
+                .orElseThrow(() -> new IllegalArgumentException("Cart Not Found"));
+        Analysis analysis = cart.getAnalysis();
+
+        analysis.setPriceWeight(requestDto.getPriceWeight());
+        analysis.setDistanceWeight(requestDto.getDistanceWeight());
+
+        // 기존 추천 결과 가져오기
+        List<RecommendationResult> results = recommendationResultRepository.findByAnalysis(analysis);
+
+        // 각 상품에 대해 새로운 score = a * price + b * 거리 계산해서 정렬
+        for (RecommendationResult result : results) {
+            double score = requestDto.getPriceWeight() * result.getTotalPrice()
+                    + requestDto.getDistanceWeight() * (result.getDistance() != null ? result.getDistance() : 0);
+
+            result.setScore(score);
+        }
+
+        recommendationResultRepository.saveAll(results);
+        analysisRepository.save(analysis);
+
+        return new AnalysisResponseDto(
+                cart.getCartId(),
+                cart.getUserId(),
+                cart.getTitle(),
+                cart.getStatus().name(),
+                cart.getCreatedAt()
+        );
+    }
+
+
+
+
+
+
+    public List<CartSummaryResponseDto> getCartsByUserAndStatus(String userId, CartStatus status) {
+        List<Cart> carts;
+
+        if (status == null) {
+            carts = cartRepository.findByUserId(userId);
+        } else {
+            carts = cartRepository.findByUserIdAndStatus(userId, status);
+        }
 
         return carts.stream().map(cart -> {
 
