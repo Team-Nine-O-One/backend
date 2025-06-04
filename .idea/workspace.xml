@@ -4,25 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f03afcaa-f968-49fb-9fc8-8d8a39654268" name="변경" comment="장바구니 소유 로직 추가">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/ChromeDriverConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/controller/CrawlerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/dto/Content.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/dto/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/service/BlogCrawler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/service/IngredientExtractionService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/service/NaverBlogCrawler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/service/SeleniumNaverShoppingCrawler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="f03afcaa-f968-49fb-9fc8-8d8a39654268" name="변경" comment="17 18 머지">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/GPTClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPTClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/GPTRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/dto/GPTRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/GPTResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/dto/GPTResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/GPTService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/service/GPTService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/dto/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/config/GPTConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPTConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/config/GPTFeignConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPTFeignConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +38,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
       </list>
@@ -63,7 +47,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/gpt-integration" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -97,6 +81,7 @@
     &quot;Gradle.Build capstone.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.Capstone [build].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.Capstone 빌드.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.MemoServiceTest.executor&quot;: &quot;Run&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
     &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
@@ -105,7 +90,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;Spring Boot.CapstoneDesignApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat/19&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/sireal/Desktop/capstone&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -153,6 +138,30 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="MemoServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.team901.CapstoneDesign.MemoServiceTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="CapstoneDesignApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="capstone.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.team901.CapstoneDesign.CapstoneDesignApplication" />
@@ -162,17 +171,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.MemoServiceTest" />
         <item itemvalue="Gradle.Capstone [build]" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
   <component name="StructureViewState">
@@ -199,6 +201,11 @@
       <workItem from="1747798111711" duration="1256000" />
       <workItem from="1747808691040" duration="7176000" />
       <workItem from="1748233440009" duration="6266000" />
+      <workItem from="1748573132143" duration="3393000" />
+      <workItem from="1748587899355" duration="1787000" />
+      <workItem from="1748610588006" duration="8000" />
+      <workItem from="1748938479818" duration="95000" />
+      <workItem from="1749049365081" duration="1474000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore 수정">
       <option name="closed" value="true" />
@@ -336,7 +343,31 @@
       <option name="project" value="LOCAL" />
       <updated>1748274899485</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="장바구니 소유 로직 추가">
+      <option name="closed" value="true" />
+      <created>1748938525685</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1748938525685</updated>
+    </task>
+    <task id="LOCAL-00019" summary="메모 분석 로직 추가">
+      <option name="closed" value="true" />
+      <created>1749049757953</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1749049757953</updated>
+    </task>
+    <task id="LOCAL-00020" summary="17 18 머지">
+      <option name="closed" value="true" />
+      <created>1749051049405</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1749051049405</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -381,7 +412,9 @@
     <MESSAGE value="분석 결과 확정 api 테스트 완료" />
     <MESSAGE value="장보기 완료 및 히스토리 저장 api 테스트 완료" />
     <MESSAGE value="장바구니 소유 로직 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="장바구니 소유 로직 추가" />
+    <MESSAGE value="메모 분석 로직 추가" />
+    <MESSAGE value="17 18 머지" />
+    <option name="LAST_COMMIT_MESSAGE" value="17 18 머지" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
