@@ -142,8 +142,14 @@ public class AnalysisService {
 
 
 
-    public List<CartSummaryResponseDto> getAllCartsByUser(String userId) {
-        List<Cart> carts = cartRepository.findByUserId(userId);
+    public List<CartSummaryResponseDto> getCartsByUserAndStatus(String userId, CartStatus status) {
+        List<Cart> carts;
+
+        if (status == null) {
+            carts = cartRepository.findByUserId(userId);
+        } else {
+            carts = cartRepository.findByUserIdAndStatus(userId, status);
+        }
 
         return carts.stream().map(cart -> {
 
