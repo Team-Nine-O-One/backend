@@ -1,12 +1,17 @@
 package com.team901.CapstoneDesign.carts.service;
 
 import com.team901.CapstoneDesign.carts.dto.*;
+import com.team901.CapstoneDesign.entity.Memo;
+import com.team901.CapstoneDesign.repository.MemoItemRepository;
+import com.team901.CapstoneDesign.repository.MemoRepository;
+import com.team901.CapstoneDesign.service.MemoService;
 import com.team901.CapstoneDesign.carts.entity.Analysis;
 import com.team901.CapstoneDesign.carts.entity.Cart;
 import com.team901.CapstoneDesign.carts.entity.RecommendationResult;
 import com.team901.CapstoneDesign.carts.repository.AnalysisRepository;
 import com.team901.CapstoneDesign.carts.repository.CartRepository;
 import com.team901.CapstoneDesign.carts.repository.RecommendationResultRepository;
+import com.team901.CapstoneDesign.dto.MemoRequestDTO;
 import com.team901.CapstoneDesign.global.enums.CartStatus;
 import com.team901.CapstoneDesign.global.enums.MartType;
 import com.team901.CapstoneDesign.mart.dto.MartDetailDto;
@@ -17,6 +22,7 @@ import com.team901.CapstoneDesign.product.entity.Product;
 import com.team901.CapstoneDesign.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -30,79 +36,44 @@ public class AnalysisService {
     private final AnalysisRepository analysisRepository;
     private final CartRepository cartRepository;
     private final RecommendationResultRepository recommendationResultRepository;
-    private final MartRepository martRepository; // 추가
-    private final ProductRepository productRepository; // 추가
+    private final MartRepository martRepository;
+    private final MemoService memoService;
+    private final MemoRepository memoRepository;
 
 
     public AnalysisResponseDto createAnalysis(AnalysisRequestDto requestDto) {
+        // 1. Memo 조회
+        Memo memo = memoRepository.findById(requestDto.getMemoId())
+                .orElseThrow(() -> new IllegalArgumentException("해당 메모가 존재하지 않습니다."));
+
+        // 2. Cart 생성
         Cart cart = new Cart();
         cart.setUserId(requestDto.getUserId());
-        cart.setTitle(requestDto.getMemo());
+        cart.setTitle(memo.getRawText());
         cart.setStatus(CartStatus.IN_PROGRESS);
         cart.setCreatedAt(LocalDateTime.now());
         cartRepository.save(cart);
 
+        // 3. Analysis 생성
         Analysis analysis = new Analysis();
         analysis.setCart(cart);
         analysis.setUserId(requestDto.getUserId());
         analysis.setCreatedAt(LocalDateTime.now());
         analysis.setPriceWeight(0.5);
         analysis.setDistanceWeight(0.5);
-        analysis.setIsConfirmed(false); // 초기엔 false
+        analysis.setIsConfirmed(false);
         analysisRepository.save(analysis);
 
-        // 크롤링 데이터 & GPT 결과 기반 최적 추천 로직 호출
-        // List<RecommendationResult> results = recommendationEngine.generate(cart, analysis);
-
-
-        // 임시로 로직 돌아갔다고 가정 후 데이터 넣은 것 !!!!!
-        List<RecommendationResult> results = List.of(
-                createMockResult(analysis, "우유", "쿠팡", 10000.0, 0.0, 0.0),
-                createMockResult(analysis, "당근", "쿠팡", 13400.0, 0.0, 0.0),
-                createMockResult(analysis, "파", "이마트", 7000.0, 2.3, null),
-                createMockResult(analysis, "마늘", "이마트", 9800.0, 2.3, null)
-        );
-        recommendationResultRepository.saveAll(results);
-
-
-        // 연관 관계 세팅
-        for (RecommendationResult result : results) {
-            result.setAnalysis(analysis);
-        }
-
-        // 저장
-        recommendationResultRepository.saveAll(results);
+        // 4. Memo → Analysis로 결과 연결
+        memoService.generateOptimizedMarketCartsAndBindToAnalysis(memo, analysis);
 
         return new AnalysisResponseDto(
                 cart.getCartId(),
-                requestDto.getUserId(),
-                requestDto.getMemo(),
+                cart.getUserId(),
+                cart.getTitle(),
                 cart.getStatus().name(),
                 cart.getCreatedAt()
         );
-    }
-
-    // 임시 분석 생성 mock 데이터 넣기 --> 추후 지울것임
-    private RecommendationResult createMockResult(
-            Analysis analysis, String productName, String martName, double price, Double distance, Double deliveryFee) {
-
-        Product product = new Product();
-        product.setName(productName);
-        productRepository.save(product);
-
-        Mart mart = new Mart();
-        mart.setName(martName);
-        mart.setType(martName.equals("쿠팡") ? MartType.ONLINE : MartType.OFFLINE); // 예시
-        martRepository.save(mart);
-
-        RecommendationResult result = new RecommendationResult();
-        result.setAnalysis(analysis);
-        result.setMart(mart);
-        result.setProduct(product);
-        result.setTotalPrice(price);
-        result.setDistance(distance);
-        result.setDeliveryFee(deliveryFee);
-        return result;
     }
 
 

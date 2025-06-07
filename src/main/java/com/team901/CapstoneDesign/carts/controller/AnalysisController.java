@@ -57,13 +57,13 @@ public class AnalysisController {
         return ResponseEntity.ok(responseDto);
     }
 
-    @Operation(summary = "임의 분석 생성 (테스트용)", description = "임시 데이터를 통해 테스트용 분석을 생성")
-    @PostMapping("/test")
-    public ResponseEntity<String> createCartForTest(@RequestBody CartTestRequestDto requestDto) {
-        analysisService.createCartForTest(requestDto);
-        return ResponseEntity.ok("테스트용 Cart 생성 완료");
-
-    }
+//    @Operation(summary = "임의 분석 생성 (테스트용)", description = "임시 데이터를 통해 테스트용 분석을 생성")
+//    @PostMapping("/test")
+//    public ResponseEntity<String> createCartForTest(@RequestBody CartTestRequestDto requestDto) {
+//        analysisService.createCartForTest(requestDto);
+//        return ResponseEntity.ok("테스트용 Cart 생성 완료");
+//
+//    }
 
     @Operation(summary = "분석 결과 확정", description = "사용자가 분석 결과를 최종적으로 확정")
     @PostMapping("/{cartId}/confirm")
