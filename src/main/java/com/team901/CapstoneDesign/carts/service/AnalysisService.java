@@ -124,18 +124,18 @@ public class AnalysisService {
 
         return carts.stream().map(cart -> {
 
-            // 테스트용 임시 추가 함수 ( 알고리즘 구현 후 삭제 )
-            if (cart.getAnalysis() == null || cart.getAnalysis().getRecommendationResults() == null) {
-                return new CartSummaryResponseDto(
-                        cart.getCartId(),
-                        cart.getTitle(),
-                        List.of(), // 빈 마트 목록
-                        0,
-                        0.0,
-                        cart.getStatus().name(),
-                        cart.getUpdatedAt()
-                );
-            }
+//            // 테스트용 임시 추가 함수 ( 알고리즘 구현 후 삭제 )
+//            if (cart.getAnalysis() == null || cart.getAnalysis().getRecommendationResults() == null) {
+//                return new CartSummaryResponseDto(
+//                        cart.getCartId(),
+//                        cart.getTitle(),
+//                        List.of(), // 빈 마트 목록
+//                        0,
+//                        0.0,
+//                        cart.getStatus().name(),
+//                        cart.getUpdatedAt()
+//                );
+//            }
 
             Map<String, List<RecommendationResult>> groupedByMart = cart.getAnalysis().getRecommendationResults()
                     .stream()
@@ -183,10 +183,10 @@ public class AnalysisService {
 
         Analysis analysis = cart.getAnalysis();
 
-        //테스트용 임시 추가 함수 ( 알고리즘 구현 후 삭제 )
-        if (analysis == null || analysis.getRecommendationResults() == null || analysis.getRecommendationResults().isEmpty()) {
-            return new CartDetailResponseDto(0, 0, List.of(), cart.getStatus().name());
-        }
+//        //테스트용 임시 추가 함수 ( 알고리즘 구현 후 삭제 )
+//        if (analysis == null || analysis.getRecommendationResults() == null || analysis.getRecommendationResults().isEmpty()) {
+//            return new CartDetailResponseDto(0, 0, List.of(), cart.getStatus().name());
+//        }
 
         List<MartDetailDto> martDetails = analysis.getRecommendationResults().stream()
                 .collect(Collectors.groupingBy(result -> result.getMart().getName()))
@@ -235,13 +235,9 @@ public class AnalysisService {
     }
 
 
-    public ConfirmCartResponseDto confirmCart(Long cartId, String userId) {
+    public ConfirmCartResponseDto confirmCart(Long cartId) {
         Cart cart = cartRepository.findById(cartId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 장바구니 존재 X"));
-
-         if (!cart.getUserId().equals(userId)) {
-             throw new IllegalArgumentException("해당 장바구니는 사용자 소유가 아닙니다.");
-         }
 
         cart.setStatus(CartStatus.CONFIRMED);
         cart.setUpdatedAt(LocalDateTime.now());
@@ -255,14 +251,9 @@ public class AnalysisService {
     }
 
 
-    public CompleteCartResponseDto completeCart(Long cartId, String userId) {
+    public CompleteCartResponseDto completeCart(Long cartId) {
         Cart cart = cartRepository.findById(cartId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 장바구니 존재 X"));
-
-
-         if (!cart.getUserId().equals(userId)) {
-             throw new IllegalArgumentException("해당 장바구니는 사용자 소유가 아닙니다.");
-         }
 
         cart.setStatus(CartStatus.COMPLETED);
         cart.setUpdatedAt(LocalDateTime.now());
@@ -275,13 +266,9 @@ public class AnalysisService {
         );
     }
 
-    public void deleteCart(Long cartId, String userId) {
+    public void deleteCart(Long cartId) {
         Cart cart = cartRepository.findById(cartId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 장바구니 존재 X"));
-
-        if (!cart.getUserId().equals(userId)) {
-            throw new IllegalArgumentException("삭제 권한이 없습니다.");
-        }
 
         if (cart.getStatus() == CartStatus.IN_PROGRESS) {
             throw new IllegalArgumentException("진행중인 장바구니는 삭제할 수 없습니다.");
