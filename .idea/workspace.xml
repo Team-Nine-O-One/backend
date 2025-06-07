@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f03afcaa-f968-49fb-9fc8-8d8a39654268" name="변경" comment="17 18 머지">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/dto/YoutubeContent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/controller/CrawlerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/controller/CrawlerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/service/BlogCrawler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/service/BlogCrawler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/service/IngredientExtractionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/service/IngredientExtractionService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +94,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;Spring Boot.CapstoneDesignApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feat/19&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/sireal/Desktop/capstone&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -206,6 +210,8 @@
       <workItem from="1748610588006" duration="8000" />
       <workItem from="1748938479818" duration="95000" />
       <workItem from="1749049365081" duration="1474000" />
+      <workItem from="1749279284649" duration="601000" />
+      <workItem from="1749304643628" duration="6098000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore 수정">
       <option name="closed" value="true" />
@@ -367,7 +373,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749051049405</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="17 18 머지">
+      <option name="closed" value="true" />
+      <created>1749052862966</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1749052862966</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -413,6 +427,7 @@
     <MESSAGE value="장보기 완료 및 히스토리 저장 api 테스트 완료" />
     <MESSAGE value="장바구니 소유 로직 추가" />
     <MESSAGE value="메모 분석 로직 추가" />
+    <MESSAGE value="feat/17 병합" />
     <MESSAGE value="17 18 머지" />
     <option name="LAST_COMMIT_MESSAGE" value="17 18 머지" />
   </component>

@@ -3,6 +3,7 @@ package com.team901.CapstoneDesign.GPT.service;
 
 
 import com.team901.CapstoneDesign.GPT.dto.Content;
+import com.team901.CapstoneDesign.GPT.dto.YoutubeContent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -54,10 +55,14 @@ public class IngredientExtractionService{
 
 
     //설명란 내용과 gpt 결합
-    public List<String> youtube(String url) throws InterruptedException {
+    public YoutubeContent youtube(String url) throws InterruptedException {
         String result=gptService.getChatResponse(String.valueOf(blogCrawler.getBlogData(url))+
-                "\n -----------\n 재료만 ,로 구분해서 알려줘" );
-        return extractIngredients(result);
+                "\n -----------\n  재료만 ,로 구분해서 알려줘" );
+
+        String title = blogCrawler.getYoutubeName(url);
+        List<String> ingredients=extractIngredients(result);
+
+        return new YoutubeContent(title,ingredients);
     }
 
 
