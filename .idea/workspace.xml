@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f03afcaa-f968-49fb-9fc8-8d8a39654268" name="변경" comment="list 삭제">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+    <list default="true" id="f03afcaa-f968-49fb-9fc8-8d8a39654268" name="변경" comment="userId 인증 삭제">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/carts/controller/AnalysisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/carts/controller/AnalysisController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/carts/service/AnalysisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/carts/service/AnalysisService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +215,8 @@
       <workItem from="1748610588006" duration="8000" />
       <workItem from="1748938479818" duration="95000" />
       <workItem from="1749049365081" duration="1474000" />
-      <workItem from="1749293046748" duration="344000" />
+      <workItem from="1749293046748" duration="1084000" />
+      <workItem from="1749372486820" duration="98000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore 수정">
       <option name="closed" value="true" />
@@ -388,7 +386,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749293071491</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="userId 인증 삭제">
+      <option name="closed" value="true" />
+      <created>1749293470435</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1749293470435</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -436,7 +442,8 @@
     <MESSAGE value="메모 분석 로직 추가" />
     <MESSAGE value="17 18 머지" />
     <MESSAGE value="list 삭제" />
-    <option name="LAST_COMMIT_MESSAGE" value="list 삭제" />
+    <MESSAGE value="userId 인증 삭제" />
+    <option name="LAST_COMMIT_MESSAGE" value="userId 인증 삭제" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
