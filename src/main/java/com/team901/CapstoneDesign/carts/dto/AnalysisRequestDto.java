@@ -8,7 +8,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class AnalysisRequestDto {
-    private String memo;
+    private Long memoId;
     private String userId;
 }
-

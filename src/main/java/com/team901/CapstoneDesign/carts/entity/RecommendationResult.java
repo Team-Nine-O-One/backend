@@ -1,5 +1,6 @@
 package com.team901.CapstoneDesign.carts.entity;
 
+import com.team901.CapstoneDesign.entity.Market;
 import com.team901.CapstoneDesign.mart.entity.Mart;
 import com.team901.CapstoneDesign.product.entity.Product;
 import jakarta.persistence.*;
@@ -25,7 +26,7 @@ public class RecommendationResult {
 
     @ManyToOne
     @JoinColumn(name = "mart_id")
-    private Mart mart;
+    private Market mart;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
@@ -47,3 +48,4 @@ public class RecommendationResult {
     private Double score; // 가격 * a + 거리 * b 계산 결과
 
 }
+

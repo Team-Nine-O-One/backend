@@ -1,12 +1,17 @@
 package com.team901.CapstoneDesign.service;
 
 import com.team901.CapstoneDesign.GPT.service.GPTService;
+import com.team901.CapstoneDesign.carts.entity.Analysis;
+import com.team901.CapstoneDesign.carts.entity.RecommendationResult;
+import com.team901.CapstoneDesign.carts.repository.RecommendationResultRepository;
 import com.team901.CapstoneDesign.dto.BestOptimizedResultDTO;
 import com.team901.CapstoneDesign.dto.MarketCartResponseDTO;
 import com.team901.CapstoneDesign.dto.MemoRequestDTO;
 import com.team901.CapstoneDesign.entity.*;
+import com.team901.CapstoneDesign.mart.entity.Mart;
 import com.team901.CapstoneDesign.product.repository.ProductRepository;
 import com.team901.CapstoneDesign.repository.*;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,11 +37,15 @@ public class MemoService {
     @Autowired private OptimizedResultItemRepository optimizedResultItemRepository;
     @Autowired private ScoreRepository scoreRepository;
 
+    @Autowired
+    private RecommendationResultRepository recommendationResultRepository;
+
 
 
     public Memo createMemoWithItems(MemoRequestDTO dto) {
         Memo memo = new Memo();
         memo.setRawText(dto.rawText);
+        memo.setUserId(dto.userId);
         memo.setCreatedAt(new Date());
         List<MemoItem> memoItems = new ArrayList<>();
 
@@ -323,11 +332,31 @@ public class MemoService {
     }
 
 
+    // 최적화 결과를 분석쪽으로
+    @Transactional
+    public void generateOptimizedMarketCartsAndBindToAnalysis(Memo memo, Analysis analysis) {
+        // 1. 추천 결과 생성 (이미 메모 저장된 상태)
+        generateOptimizedMarketCarts(memo.getId(), memo.getUserLat(), memo.getUserLng());
 
+        // 2. 추천 결과 조회
+        List<OptimizedResult> results = optimizedResultRepository.findByMemo(memo);
 
+        // 3. RecommendationResult로 변환하여 Analysis에 연결
+        for (OptimizedResult result : results) {
+            RecommendationResult rr = new RecommendationResult();
+            rr.setAnalysis(analysis);
 
+            // 마트
+            Market mart = marketRepo.findByName(result.getMarketName())
+                    .orElseThrow(() -> new RuntimeException("마트를 찾을 수 없습니다."));
+            rr.setMart(mart);
 
-
-
+            rr.setTotalPrice((double) result.getTotalPrice());
+            rr.setDistance(result.getDistance());
+            rr.setDeliveryFee(0.0);
+            rr.setScore(0.0);
+            recommendationResultRepository.save(rr);
+        }
+    }
 
 }
