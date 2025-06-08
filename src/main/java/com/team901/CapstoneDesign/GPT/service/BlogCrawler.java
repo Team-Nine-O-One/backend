@@ -33,6 +33,9 @@ public class BlogCrawler {
 
         // Selenium WebDriver 설정
         ChromeOptions options = new ChromeOptions(); // 크롬 옵션 객체 생성
+        options.addArguments("--headless");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
         //options.addArguments("--headless=new");
 
         WebDriver driver = new ChromeDriver(options); // WebDriver 객체 생성
@@ -47,6 +50,43 @@ public class BlogCrawler {
             // 설명 텍스트 추출
             description = element.getAttribute("textContent");
             System.out.println("✅ 유튜브 설명 크롤링 성공:\n" + description);
+
+            //System.out.println("✅ element.getAttribute('textContent'): " + element.getAttribute("textContent"));
+            //System.out.println("✅ element.getAttribute('innerHTML'): " + element.getAttribute("innerHTML"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            driver.quit(); // ✅ 브라우저는 항상 종료
+        }
+
+        return description; // 크롤링 결과 반환
+    }
+
+
+
+    public String getYoutubeName(String url) throws InterruptedException {
+        // 크롤링 결과를 담을 리스트 초기화
+        String description = "";
+
+        // Selenium WebDriver 설정
+        ChromeOptions options = new ChromeOptions(); // 크롬 옵션 객체 생성
+        options.addArguments("--headless");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        //options.addArguments("--headless=new");
+
+        WebDriver driver = new ChromeDriver(options); // WebDriver 객체 생성
+
+        try {
+            // 네이버 쇼핑 검색 URL 생성
+            driver.get(url);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(
+                    By.cssSelector("yt-formatted-string.style-scope.ytd-video-description-header-renderer") ));
+
+            // 설명 텍스트 추출
+            description = element.getAttribute("textContent");
+            System.out.println("✅ 유튜브 제목 크롤링 성공:\n" + description);
 
             //System.out.println("✅ element.getAttribute('textContent'): " + element.getAttribute("textContent"));
             //System.out.println("✅ element.getAttribute('innerHTML'): " + element.getAttribute("innerHTML"));

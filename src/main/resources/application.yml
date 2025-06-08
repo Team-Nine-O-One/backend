@@ -10,11 +10,12 @@ spring:
 #      username: admin
 #      password: 20250519
 
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/capstone
-    username: root
-    password:
+#
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://127.0.0.1:3306/capstone
+#    username: root
+#    password: 1208
 
   jpa:
     hibernate:
