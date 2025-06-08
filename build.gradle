@@ -42,6 +42,13 @@ dependencies {
 
     // 스웨거 속성 추가
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
+
+    implementation 'com.google.api-client:google-api-client:1.32.1' // 최신 API Client
+    implementation 'com.google.apis:google-api-services-youtube:v3-rev222-1.25.0' // 유튜브 API v3
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.15.3'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.3'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.15.3'
+    implementation 'com.google.http-client:google-http-client-jackson2:1.32.1'
 }
 
 

@@ -33,6 +33,9 @@ public class BlogCrawler {
 
         // Selenium WebDriver 설정
         ChromeOptions options = new ChromeOptions(); // 크롬 옵션 객체 생성
+        options.addArguments("--headless");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
         //options.addArguments("--headless=new");
 
         WebDriver driver = new ChromeDriver(options); // WebDriver 객체 생성
@@ -67,6 +70,9 @@ public class BlogCrawler {
 
         // Selenium WebDriver 설정
         ChromeOptions options = new ChromeOptions(); // 크롬 옵션 객체 생성
+        options.addArguments("--headless");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
         //options.addArguments("--headless=new");
 
         WebDriver driver = new ChromeDriver(options); // WebDriver 객체 생성

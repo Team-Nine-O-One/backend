@@ -31,6 +31,7 @@ public class CrawlerController {
     private final BlogCrawler blogCrawler;
     private final IngredientExtractionService ingredientExtractionService;
 
+
     public CrawlerController(SeleniumNaverShoppingCrawler seleniumCrawler, BlogCrawler blogCrawler, IngredientExtractionService ingredientExtractionService) {
         this.seleniumCrawler = seleniumCrawler;
         this.blogCrawler = blogCrawler;
@@ -80,25 +81,25 @@ public class CrawlerController {
 
 
     //유튜브 쇼츠 주소 넣고 재료 리스트 반환
-    @GetMapping("/youtube")
-    @Operation(
-            summary = "유튜브 쇼츠에서 재료 추출",
-            description = "유튜브 쇼츠 URL을 입력하면 영상 설명을 분석하여 요리 재료 목록을 추출하고 영상 제목과 함께 반환합니다.",
-            responses = {
-                    @ApiResponse(responseCode = "200", description = "성공적으로 재료를 추출하였습니다."),
-                    @ApiResponse(responseCode = "400", description = "잘못된 요청입니다."),
-                    @ApiResponse(responseCode = "500", description = "서버 오류입니다.")
-            }
-    )
-    public YoutubeContent youtube(@Parameter(description = "유튜브 쇼츠 영상 URL", example = "https://www.youtube.com/shorts/5CuOskioLNE")
-            @RequestParam String url){
-        try {
-            return ingredientExtractionService.youtube(url);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+//    @GetMapping("/youtube")
+//    @Operation(
+//            summary = "유튜브 쇼츠에서 재료 추출",
+//            description = "유튜브 쇼츠 URL을 입력하면 영상 설명을 분석하여 요리 재료 목록을 추출하고 영상 제목과 함께 반환합니다.",
+//            responses = {
+//                    @ApiResponse(responseCode = "200", description = "성공적으로 재료를 추출하였습니다."),
+//                    @ApiResponse(responseCode = "400", description = "잘못된 요청입니다."),
+//                    @ApiResponse(responseCode = "500", description = "서버 오류입니다.")
+//            }
+//    )
+//    public YoutubeContent youtube(@Parameter(description = "유튜브 쇼츠 영상 URL", example = "https://www.youtube.com/shorts/5CuOskioLNE")
+//            @RequestParam String url){
+//        try {
+//            return ingredientExtractionService.youtube(url);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
 
 //    @GetMapping("/crawl3")
 //    public Content crawl3(

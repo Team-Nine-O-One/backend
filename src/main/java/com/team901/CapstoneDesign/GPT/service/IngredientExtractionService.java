@@ -21,6 +21,7 @@ public class IngredientExtractionService{
     private final BlogCrawler blogCrawler;
 
 
+
     /**
      * 진짜 주소 넣어서 식재료 반환
      * @param url
