@@ -15,14 +15,3 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.MySQL8Dialect
-
-gpt:
-  model: gpt-4o
-  api:
-    key: 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
-    url: https://api.openai.com/v1/chat/completions
-
-
-youtube:
-  api:
-    key: AIzaSyCREIkoH82oZhDnmRU876uwDamwMLsTLhE

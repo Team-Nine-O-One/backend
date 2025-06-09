@@ -9,3 +9,12 @@ spring:
     hibernate:
       ddl-auto: create-drop
     database-platform: org.hibernate.dialect.H2Dialect
+
+  gpt:
+    api:
+      url: https://dummy-url.com
+      key: dummy-key
+
+  youtube:
+    api:
+      key: dummy-youtube-key
