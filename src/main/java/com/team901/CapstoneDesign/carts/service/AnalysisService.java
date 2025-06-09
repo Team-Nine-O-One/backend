@@ -124,19 +124,6 @@ public class AnalysisService {
 
         return carts.stream().map(cart -> {
 
-//            // 테스트용 임시 추가 함수 ( 알고리즘 구현 후 삭제 )
-//            if (cart.getAnalysis() == null || cart.getAnalysis().getRecommendationResults() == null) {
-//                return new CartSummaryResponseDto(
-//                        cart.getCartId(),
-//                        cart.getTitle(),
-//                        List.of(), // 빈 마트 목록
-//                        0,
-//                        0.0,
-//                        cart.getStatus().name(),
-//                        cart.getUpdatedAt()
-//                );
-//            }
-
             Map<String, List<RecommendationResult>> groupedByMart = cart.getAnalysis().getRecommendationResults()
                     .stream()
                     .collect(Collectors.groupingBy(result -> result.getMart().getName()));
@@ -169,7 +156,8 @@ public class AnalysisService {
                     0,
                     totalPrice,
                     cart.getStatus().name(),
-                    cart.getUpdatedAt()
+                    cart.getUpdatedAt(),
+                    cart.getStatus() == CartStatus.COMPLETED
             );
         }).collect(Collectors.toList());
     }

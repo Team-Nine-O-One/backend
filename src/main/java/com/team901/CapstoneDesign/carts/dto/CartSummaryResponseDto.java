@@ -16,5 +16,6 @@ public class CartSummaryResponseDto {
     private Double totalPrice;
     private String status;
     private LocalDateTime updatedAt;
+    private boolean isCompleted;
 }
 
