@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@ActiveProfiles("dev")
+@ActiveProfiles("test")
 @SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
 @Transactional
