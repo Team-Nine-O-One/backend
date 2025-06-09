@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f03afcaa-f968-49fb-9fc8-8d8a39654268" name="변경" comment="yml 수정">
+    <list default="true" id="f03afcaa-f968-49fb-9fc8-8d8a39654268" name="변경" comment="isCompleted 추가">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/carts/dto/CartSummaryResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/carts/dto/CartSummaryResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/carts/service/AnalysisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/carts/service/AnalysisService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -272,7 +271,7 @@
       <workItem from="1749304643628" duration="6624000" />
       <workItem from="1749317239032" duration="936000" />
       <workItem from="1749354181490" duration="6421000" />
-      <workItem from="1749480199809" duration="455000" />
+      <workItem from="1749480199809" duration="1189000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore 수정">
       <option name="closed" value="true" />
@@ -482,7 +481,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749376842005</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="isCompleted 추가">
+      <option name="closed" value="true" />
+      <created>1749480815579</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1749480815579</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -511,7 +518,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="gitignore 수정" />
     <MESSAGE value="application-dev.yml 수정, start.sh 수정" />
     <MESSAGE value=" start.sh 수정" />
     <MESSAGE value="feat : GPT API 연동" />
@@ -536,7 +542,8 @@
     <MESSAGE value="dev 수정" />
     <MESSAGE value="@ActiveProfiles(&quot;dev&quot;) 추갸" />
     <MESSAGE value="yml 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="yml 수정" />
+    <MESSAGE value="isCompleted 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="isCompleted 추가" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
