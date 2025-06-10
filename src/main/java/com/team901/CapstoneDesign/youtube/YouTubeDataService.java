@@ -70,7 +70,7 @@ public class YouTubeDataService {
 
     public List<String> youtube(String description) {
         String result=gptService.getChatResponse(description+
-                "\n -----------\n  재료만 ,로 구분해서 알려줘");
+                "\n -----------\n  재료만 양과 단위를 포함해서 ,로 구분해서 알려줘 단위가 없으면 한개, 한스푼 이런식으로 넣어줘");
 
         List<String> ingredients=extractIngredients(result);
 
