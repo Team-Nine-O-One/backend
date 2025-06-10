@@ -21,8 +21,12 @@ public class Memo {
     @GeneratedValue
     private Long id;
 
+    private String userId;
     private String rawText;
     private Date createdAt;
+
+    private Double userLat;
+    private Double userLng;
 
     @OneToMany(mappedBy = "memo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MemoItem> memoItems = new ArrayList<>();
