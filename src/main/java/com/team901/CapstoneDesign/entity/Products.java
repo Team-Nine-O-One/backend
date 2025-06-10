@@ -20,4 +20,6 @@ public class Products {
 
     @ManyToOne
     private Market market;
+
+    private Double pricePer100g;
 }

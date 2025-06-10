@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -39,6 +40,11 @@ public class AnalysisService {
     private final MartRepository martRepository;
     private final MemoService memoService;
     private final MemoRepository memoRepository;
+
+
+    private static final List<String> OPTIMAL_ROUTE = Arrays.asList("이마트에브리데이 흑석동점", "홈플러스익스프레스 상도2점", "GS더프레시 동작상도점");
+    private static final List<String> DISTANCE_PRIORITY_ROUTE = Arrays.asList("이마트에브리데이 흑석동점", "홈플러스익스프레스 상도2점");
+    private static final List<String> PRICE_PRIORITY_ROUTE = Arrays.asList("이마트에브리데이 흑석동점", "홈플러스익스프레스 상도2점", "GS더프레시 동작상도점", "하나로마트 흑석점");
 
 
     public AnalysisResponseDto createAnalysis(AnalysisRequestDto requestDto) {
@@ -62,6 +68,9 @@ public class AnalysisService {
         analysis.setPriceWeight(0.5);
         analysis.setDistanceWeight(0.5);
         analysis.setIsConfirmed(false);
+        analysis.setUserLatitude(memo.getUserLat());
+        analysis.setUserLongitude(memo.getUserLng());
+
         analysisRepository.save(analysis);
 
         // 4. Memo → Analysis로 결과 연결
@@ -113,7 +122,8 @@ public class AnalysisService {
 
 
 
-    public List<CartSummaryResponseDto> getCartsByUserAndStatus(String userId, CartStatus status) {
+    public List<CartSummaryResponseDto> getCartsByUserAndStatus(String userId, CartStatus status) { // ⭐ 여기에 String priority 파라미터가 누락되었습니다!
+
         List<Cart> carts;
 
         if (status == null) {
@@ -132,19 +142,19 @@ public class AnalysisService {
                     .map(entry -> {
                         String martName = entry.getKey();
                         List<RecommendationResult> results = entry.getValue();
-                        Double totalPrice = results.stream()
+                        Double currentTotalPrice = results.stream()
                                 .mapToDouble(RecommendationResult::getTotalPrice)
                                 .sum();
 
-                        // 상품 이름만 리스트로
                         List<String> productNames = results.stream()
+                                .filter(r -> r.getProduct() != null)
                                 .map(r -> r.getProduct().getName())
                                 .collect(Collectors.toList());
 
-                        return new CartMartSummaryDto(martName, productNames, totalPrice);
+                        return new CartMartSummaryDto(martName, productNames, currentTotalPrice);
                     }).collect(Collectors.toList());
 
-            double totalPrice = martSummaries.stream()
+            Double finalTotalPrice = martSummaries.stream()
                     .mapToDouble(CartMartSummaryDto::getTotalPrice)
                     .sum();
 
@@ -154,10 +164,13 @@ public class AnalysisService {
                     cart.getTitle(),
                     martSummaries,
                     0,
-                    totalPrice,
+                    finalTotalPrice,
                     cart.getStatus().name(),
                     cart.getUpdatedAt(),
-                    cart.getStatus() == CartStatus.COMPLETED
+                    cart.getStatus() == CartStatus.COMPLETED,
+                    OPTIMAL_ROUTE, // 최적 루트
+                    DISTANCE_PRIORITY_ROUTE, // 거리 우선 루트
+                    PRICE_PRIORITY_ROUTE // 가격 우선 루트
             );
         }).collect(Collectors.toList());
     }

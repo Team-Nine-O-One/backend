@@ -11,11 +11,15 @@ import java.util.List;
 public class CartSummaryResponseDto {
     private Long cartId;
     private String title;
-    private List<CartMartSummaryDto> marts;
+    private List<CartMartSummaryDto> martSummaries;
     private int totalItems;
     private Double totalPrice;
     private String status;
     private LocalDateTime updatedAt;
     private boolean isCompleted;
+
+    private List<String> optimalMartRoute;
+    private List<String> distancePriorityMartRoute;
+    private List<String> pricePriorityMartRoute;
 }
 
