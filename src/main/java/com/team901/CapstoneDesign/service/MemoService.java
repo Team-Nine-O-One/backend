@@ -9,6 +9,7 @@ import com.team901.CapstoneDesign.dto.MarketCartResponseDTO;
 import com.team901.CapstoneDesign.dto.MemoRequestDTO;
 import com.team901.CapstoneDesign.entity.*;
 import com.team901.CapstoneDesign.mart.entity.Mart;
+import com.team901.CapstoneDesign.product.entity.Product;
 import com.team901.CapstoneDesign.product.repository.ProductRepository;
 import com.team901.CapstoneDesign.repository.*;
 import jakarta.transaction.Transactional;
@@ -40,14 +41,16 @@ public class MemoService {
     @Autowired
     private RecommendationResultRepository recommendationResultRepository;
 
-
+    @Autowired private ProductRepository productRepository;
 
     public Memo createMemoWithItems(MemoRequestDTO dto) {
         Memo memo = new Memo();
         memo.setRawText(dto.rawText);
         memo.setUserId(dto.userId);
-
+        memo.setUserLat(dto.userLat);
+        memo.setUserLng(dto.userLng);
         memo.setCreatedAt(new Date());
+
         List<MemoItem> memoItems = new ArrayList<>();
 
         String[] items = dto.rawText.split("\\|");
@@ -334,30 +337,70 @@ public class MemoService {
 
 
     // 최적화 결과를 분석쪽으로
+//    @Transactional
+//    public void generateOptimizedMarketCartsAndBindToAnalysis(Memo memo, Analysis analysis) {
+//        // 1. 추천 결과 생성 (이미 메모 저장된 상태)
+//        generateOptimizedMarketCarts(memo.getId(), memo.getUserLat(), memo.getUserLng());
+//
+//        // 2. 추천 결과 조회
+//        List<OptimizedResult> results = optimizedResultRepository.findByMemo(memo);
+//
+//        // 3. RecommendationResult로 변환하여 Analysis에 연결
+//        for (OptimizedResult result : results) {
+//            RecommendationResult rr = new RecommendationResult();
+//            rr.setAnalysis(analysis);
+//
+//            // 마트
+//            Market mart = marketRepo.findByName(result.getMarketName())
+//                    .orElseThrow(() -> new RuntimeException("마트를 찾을 수 없습니다."));
+//            rr.setMart(mart);
+//
+//            rr.setTotalPrice((double) result.getTotalPrice());
+//            rr.setDistance(result.getDistance());
+//            rr.setDeliveryFee(0.0);
+//            rr.setScore(0.0);
+//            recommendationResultRepository.save(rr);
+//        }
+//    }
+
+
+    // 최적화 결과를 분석쪽으로
     @Transactional
     public void generateOptimizedMarketCartsAndBindToAnalysis(Memo memo, Analysis analysis) {
-        // 1. 추천 결과 생성 (이미 메모 저장된 상태)
+
         generateOptimizedMarketCarts(memo.getId(), memo.getUserLat(), memo.getUserLng());
 
-        // 2. 추천 결과 조회
-        List<OptimizedResult> results = optimizedResultRepository.findByMemo(memo);
+        List<OptimizedResult> optimizedResults = optimizedResultRepository.findByMemo(memo);
 
-        // 3. RecommendationResult로 변환하여 Analysis에 연결
-        for (OptimizedResult result : results) {
-            RecommendationResult rr = new RecommendationResult();
-            rr.setAnalysis(analysis);
+        for (OptimizedResult optimizedResult : optimizedResults) {
+            List<OptimizedResultItem> optimizedItems = optimizedResult.getItems();
 
-            // 마트
-            Market mart = marketRepo.findByName(result.getMarketName())
-                    .orElseThrow(() -> new RuntimeException("마트를 찾을 수 없습니다."));
-            rr.setMart(mart);
+            if (optimizedItems.isEmpty()) {
+                System.out.println("OptimizedResult(" + optimizedResult.getMarketName() + ")에 OptimizedResultItem이 비어있습니다. generateOptimizedMarketCarts를 다시 확인하세요.");
+                continue; // 이 마트에 대한 상품이 없으므로 다음 마트로
+            }
 
-            rr.setTotalPrice((double) result.getTotalPrice());
-            rr.setDistance(result.getDistance());
-            rr.setDeliveryFee(0.0);
-            rr.setScore(0.0);
-            recommendationResultRepository.save(rr);
+            Market mart = marketRepo.findByName(optimizedResult.getMarketName())
+                    .orElseThrow(() -> new RuntimeException("마트를 찾을 수 없습니다: " + optimizedResult.getMarketName()));
+
+            for (OptimizedResultItem item : optimizedItems) {
+                RecommendationResult rr = new RecommendationResult();
+                rr.setAnalysis(analysis);
+                rr.setMart(mart);
+
+                Product product = productRepository.findByName(item.getProductName())
+                        .orElseThrow(() -> new RuntimeException("상품을 찾을 수 없습니다: " + item.getProductName()));
+                rr.setProduct(product);
+
+                rr.setTotalPrice((double) item.getPrice()); // 상품 개별 가격
+                rr.setDistance(optimizedResult.getDistance());
+                rr.setDeliveryFee(0.0);
+                rr.setScore(0.0);
+
+                recommendationResultRepository.save(rr);
+            }
         }
     }
+
 
 }
