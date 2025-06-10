@@ -46,8 +46,7 @@ public class MemoService {
         Memo memo = new Memo();
         memo.setRawText(dto.rawText);
         memo.setUserId(dto.userId);
-        memo.setUserLat(dto.userLat); // 수정한 부분
-        memo.setUserLng(dto.userLng);
+
         memo.setCreatedAt(new Date());
         List<MemoItem> memoItems = new ArrayList<>();
 

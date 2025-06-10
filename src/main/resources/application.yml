@@ -6,9 +6,9 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/capstone
-    username: root
-    password:
+    url: jdbc:mysql://database-901.clokoka2yxih.ap-northeast-2.rds.amazonaws.com:3306/capstone
+    username: admin
+    password: 20250519
 
   jpa:
     hibernate:
