@@ -184,10 +184,6 @@ public class AnalysisService {
 
         Analysis analysis = cart.getAnalysis();
 
-//        //테스트용 임시 추가 함수 ( 알고리즘 구현 후 삭제 )
-//        if (analysis == null || analysis.getRecommendationResults() == null || analysis.getRecommendationResults().isEmpty()) {
-//            return new CartDetailResponseDto(0, 0, List.of(), cart.getStatus().name());
-//        }
 
         List<MartDetailDto> martDetails = analysis.getRecommendationResults().stream()
                 .collect(Collectors.groupingBy(result -> result.getMart().getName()))

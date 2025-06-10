@@ -1,6 +1,8 @@
 package com.team901.CapstoneDesign.product.entity;
 
 
+import com.team901.CapstoneDesign.entity.Market;
+import com.team901.CapstoneDesign.mart.entity.Mart;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,9 +24,23 @@ public class Product {
     private String name;
 
     @Column(nullable = true)
+    private String category;
+
+    @Column(nullable = true)
+    private String volume;
+
+    @Column(nullable = true)
+    private Double price;
+
+    @Column(nullable = true)
     private String imageUrl;
 
-    public Double getPricePer100g;
+    @Column(name = "price_per100g", nullable = true)
+    private Double pricePer100g;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "mart_id")
+    private Market mart;
 }
+
 
