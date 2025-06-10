@@ -225,15 +225,6 @@ public class AnalysisService {
     }
 
 
-    public void createCartForTest(CartTestRequestDto requestDto) {
-        Cart cart = new Cart();
-        cart.setUserId(requestDto.getUserId());
-        cart.setTitle(requestDto.getTitle());
-        cart.setStatus(CartStatus.IN_PROGRESS);
-        cart.setCreatedAt(LocalDateTime.now());
-
-        cartRepository.save(cart);
-    }
 
 
     public ConfirmCartResponseDto confirmCart(Long cartId) {
