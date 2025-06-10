@@ -23,5 +23,8 @@ public class Product {
 
     @Column(nullable = true)
     private String imageUrl;
+
+    public Double getPricePer100g;
+
 }
 
