@@ -263,12 +263,16 @@ public class MemoService {
             optimizedResult.setDistance(cart.getDistanceFromUser());
             optimizedResultRepository.save(optimizedResult);
 
+
             for (MarketCartResponseDTO.CartItemDTO dtoItem : items) {
                 OptimizedResultItem item = new OptimizedResultItem();
                 item.setOptimizedResult(optimizedResult);
                 item.setMemoItemName(dtoItem.memoItemName);
                 item.setProductName(dtoItem.productName);
                 item.setPrice(dtoItem.price);
+                // ✅ 양방향 연관관계 연결
+                optimizedResult.getItems().add(item);
+
                 optimizedResultItemRepository.save(item);
             }
 
@@ -388,8 +392,23 @@ public class MemoService {
                 rr.setAnalysis(analysis);
                 rr.setMart(mart);
 
-                Product product = productRepository.findByName(item.getProductName())
-                        .orElseThrow(() -> new RuntimeException("상품을 찾을 수 없습니다: " + item.getProductName()));
+                String target = item.getProductName().replaceAll("\\s+", "").toLowerCase();
+
+                List<Product> candidates = productRepository.findAll().stream()
+                        .filter(p -> {
+                            String productName = p.getName().replaceAll("\\s+", "").toLowerCase();
+                            return productName.contains(target) || target.contains(productName);
+                        })
+                        .toList();
+
+
+                if (candidates.isEmpty()) {
+                    System.out.println("❌ 상품을 찾을 수 없습니다: " + item.getProductName());
+                    continue;
+                }
+
+                Product product = candidates.get(0);
+
                 rr.setProduct(product);
 
                 rr.setTotalPrice((double) item.getPrice()); // 상품 개별 가격
