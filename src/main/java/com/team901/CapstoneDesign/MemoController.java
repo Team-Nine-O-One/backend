@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/memos")
@@ -19,9 +20,9 @@ public class MemoController {
     private MemoService memoService;
 
     @PostMapping
-    public ResponseEntity<String> createMemo(@RequestBody MemoRequestDTO dto) {
+    public ResponseEntity<Map<String, Long>> createMemo(@RequestBody MemoRequestDTO dto) {
         Memo savedMemo = memoService.createMemoWithItems(dto);
-        return ResponseEntity.ok("Memo saved with ID: " + savedMemo.getId());
+        return ResponseEntity.ok(Map.of("memo_id", savedMemo.getId()));
     }
 
     @GetMapping("/{memoId}/carts")
