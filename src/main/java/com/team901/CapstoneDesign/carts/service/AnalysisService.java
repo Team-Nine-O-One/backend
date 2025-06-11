@@ -189,6 +189,10 @@ public class AnalysisService {
                 .collect(Collectors.groupingBy(result -> result.getMart().getName()))
                 .entrySet().stream()
                 .map(entry -> {
+
+                    var firstResult = entry.getValue().get(0);
+                    var mart = firstResult.getMart();
+
                     List<ProductDetailDto> products = entry.getValue().stream()
                             .map(r -> new ProductDetailDto(
                                     r.getProduct().getName(),
@@ -206,7 +210,9 @@ public class AnalysisService {
                             estimatedTime,
                             products.size(),
                             products.stream().mapToDouble(ProductDetailDto::getPrice).sum(),
-                            products
+                            products,
+                            mart.getLatitude(),
+                            mart.getLongitude()
                     );
                 }).collect(Collectors.toList());
 

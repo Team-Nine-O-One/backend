@@ -15,4 +15,7 @@ public class MartDetailDto {
     private Integer totalItems;
     private Double totalPrice;
     private List<ProductDetailDto> products;
+    private Double latitude;
+    private Double longitude;
+
 }
