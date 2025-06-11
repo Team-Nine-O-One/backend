@@ -42,9 +42,23 @@ public class AnalysisService {
     private final MemoRepository memoRepository;
 
 
-    private static final List<String> OPTIMAL_ROUTE = Arrays.asList("이마트에브리데이 흑석동점", "홈플러스익스프레스 상도2점", "GS더프레시 동작상도점");
-    private static final List<String> DISTANCE_PRIORITY_ROUTE = Arrays.asList("이마트에브리데이 흑석동점", "홈플러스익스프레스 상도2점");
-    private static final List<String> PRICE_PRIORITY_ROUTE = Arrays.asList("이마트에브리데이 흑석동점", "홈플러스익스프레스 상도2점", "GS더프레시 동작상도점", "하나로마트 흑석점");
+    private static final List<String> PRICE_PRIORITY_ROUTE = Arrays.asList(
+            "이마트에브리데이 흑석동점",  // market_id = 1
+            "홈플러스익스프레스 상도2점", // market_id = 2
+            "GS더프레시 동작상도점",     // market_id = 3
+            "하나로마트 흑석점"          // market_id = 4
+    );
+
+    private static final List<String> DISTANCE_PRIORITY_ROUTE = Arrays.asList(
+            "이마트에브리데이 흑석동점",  // market_id = 1
+            "홈플러스익스프레스 상도2점"  // market_id = 2
+    );
+
+    private static final List<String> OPTIMAL_ROUTE = Arrays.asList(
+            "이마트에브리데이 흑석동점",  // market_id = 1
+            "홈플러스익스프레스 상도2점", // market_id = 2
+            "GS더프레시 동작상도점"      // market_id = 3
+    );
 
 
     public AnalysisResponseDto createAnalysis(AnalysisRequestDto requestDto) {
