@@ -52,8 +52,13 @@ public class AnalysisController {
 
     @Operation(summary = "특정 분석 상세 조회", description = "cartId에 해당하는 상세 분석 정보를 조회")
     @GetMapping("/{cartId}")
-    public ResponseEntity<CartDetailResponseDto> getCartDetails(@PathVariable Long cartId) {
-        CartDetailResponseDto responseDto = analysisService.getCartDetails(cartId);
+//    public ResponseEntity<CartDetailResponseDto> getCartDetails(@PathVariable Long cartId) {
+//        CartDetailResponseDto responseDto = analysisService.getCartDetails(cartId);
+//        return ResponseEntity.ok(responseDto);
+//    }
+
+    public ResponseEntity<GroupedCartDetailResponseDto> getCartDetails(@PathVariable Long cartId) {
+        GroupedCartDetailResponseDto responseDto = analysisService.getGroupedCartDetails(cartId);
         return ResponseEntity.ok(responseDto);
     }
 

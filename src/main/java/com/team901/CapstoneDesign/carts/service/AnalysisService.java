@@ -1,6 +1,7 @@
 package com.team901.CapstoneDesign.carts.service;
 
 import com.team901.CapstoneDesign.carts.dto.*;
+import com.team901.CapstoneDesign.entity.Market;
 import com.team901.CapstoneDesign.entity.Memo;
 import com.team901.CapstoneDesign.repository.MemoItemRepository;
 import com.team901.CapstoneDesign.repository.MemoRepository;
@@ -88,7 +89,7 @@ public class AnalysisService {
         analysisRepository.save(analysis);
 
         // 4. Memo → Analysis로 결과 연결
-        memoService.generateOptimizedMarketCartsAndBindToAnalysis(memo, analysis);
+        // memoService.generateOptimizedMarketCartsAndBindToAnalysis(memo, analysis);
 
         return new AnalysisResponseDto(
                 cart.getCartId(),
@@ -192,54 +193,136 @@ public class AnalysisService {
 
 
 
-    public CartDetailResponseDto getCartDetails(Long cartId) {
+//    public CartDetailResponseDto getCartDetails(Long cartId) {
+//        Cart cart = cartRepository.findById(cartId)
+//                .orElseThrow(() -> new IllegalArgumentException("해당 Cart가 존재하지 않습니다."));
+//
+//        Analysis analysis = cart.getAnalysis();
+//
+//
+//        List<MartDetailDto> martDetails = analysis.getRecommendationResults().stream()
+//                .collect(Collectors.groupingBy(result -> result.getMart().getName()))
+//                .entrySet().stream()
+//                .map(entry -> {
+//
+//                    var firstResult = entry.getValue().get(0);
+//                    var mart = firstResult.getMart();
+//
+//                    List<ProductDetailDto> products = entry.getValue().stream()
+//                            .map(r -> new ProductDetailDto(
+//                                    r.getProduct().getName(),
+//                                    r.getTotalPrice(),
+//                                    r.getPricePer100g()
+//                            )).collect(Collectors.toList());
+//
+//                    boolean isOnline = entry.getValue().get(0).getMart().getType().name().equals("ONLINE");
+//                    Double distance = isOnline ? 0.0 : entry.getValue().get(0).getDistance();
+//                    String estimatedTime = isOnline ? "0분" : "30분";
+//
+//                    return new MartDetailDto(
+//                            entry.getKey(),
+//                            distance,
+//                            estimatedTime,
+//                            products.size(),
+//                            products.stream().mapToDouble(ProductDetailDto::getPrice).sum(),
+//                            products,
+//                            mart.getLatitude(),
+//                            mart.getLongitude()
+//                    );
+//                }).collect(Collectors.toList());
+//
+//        int onlineCount = (int) martDetails.stream().filter(m -> m.getDistance() == 0.0).count();
+//        int offlineCount = martDetails.size() - onlineCount;
+//
+//        return new CartDetailResponseDto(
+//                onlineCount,
+//                offlineCount,
+//                martDetails,
+//                cart.getStatus().name());
+//    }
+
+
+    public CartDetailGroupedResponseDto getCartDetails(Long cartId) {
         Cart cart = cartRepository.findById(cartId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 Cart가 존재하지 않습니다."));
 
         Analysis analysis = cart.getAnalysis();
+        List<RecommendationResult> results = analysis.getRecommendationResults();
 
+        List<RecommendationResult> onlineResults = results.stream()
+                .filter(r -> r.getMart().getType() == MartType.ONLINE)
+                .collect(Collectors.toList());
 
-        List<MartDetailDto> martDetails = analysis.getRecommendationResults().stream()
-                .collect(Collectors.groupingBy(result -> result.getMart().getName()))
-                .entrySet().stream()
-                .map(entry -> {
+        List<RecommendationResult> offlineResults = results.stream()
+                .filter(r -> r.getMart().getType() == MartType.OFFLINE)
+                .collect(Collectors.toList());
 
-                    var firstResult = entry.getValue().get(0);
-                    var mart = firstResult.getMart();
+        // 온라인 마트
+        List<ProductDetailDto> onlineProducts = onlineResults.stream()
+                .map(r -> new ProductDetailDto(
+                        r.getProduct().getName(),
+                        r.getTotalPrice(),
+                        r.getPricePer100g()
+                )).collect(Collectors.toList());
 
-                    List<ProductDetailDto> products = entry.getValue().stream()
-                            .map(r -> new ProductDetailDto(
-                                    r.getProduct().getName(),
-                                    r.getTotalPrice(),
-                                    r.getPricePer100g()
-                            )).collect(Collectors.toList());
+        double onlineTotalPrice = onlineProducts.stream().mapToDouble(ProductDetailDto::getPrice).sum();
+        OnlineMartDto onlineDto = new OnlineMartDto(
+                onlineProducts.size(),
+                onlineTotalPrice,
+                onlineProducts
+        );
 
-                    boolean isOnline = entry.getValue().get(0).getMart().getType().name().equals("ONLINE");
-                    Double distance = isOnline ? 0.0 : entry.getValue().get(0).getDistance();
-                    String estimatedTime = isOnline ? "0분" : "30분";
+        // 오프라인 마트 루트별 분류
+        Map<String, List<RecommendationResult>> groupedByMartName = offlineResults.stream()
+                .collect(Collectors.groupingBy(r -> r.getMart().getName()));
 
-                    return new MartDetailDto(
-                            entry.getKey(),
-                            distance,
-                            estimatedTime,
-                            products.size(),
-                            products.stream().mapToDouble(ProductDetailDto::getPrice).sum(),
-                            products,
-                            mart.getLatitude(),
-                            mart.getLongitude()
-                    );
-                }).collect(Collectors.toList());
+        List<MartDetailDto> optimal = OPTIMAL_ROUTE.stream()
+                .filter(groupedByMartName::containsKey)
+                .map(name -> toMartDetail(groupedByMartName.get(name)))
+                .collect(Collectors.toList());
 
-        int onlineCount = (int) martDetails.stream().filter(m -> m.getDistance() == 0.0).count();
-        int offlineCount = martDetails.size() - onlineCount;
+        List<MartDetailDto> distance = DISTANCE_PRIORITY_ROUTE.stream()
+                .filter(groupedByMartName::containsKey)
+                .map(name -> toMartDetail(groupedByMartName.get(name)))
+                .collect(Collectors.toList());
 
-        return new CartDetailResponseDto(
-                onlineCount,
-                offlineCount,
-                martDetails,
-                cart.getStatus().name());
+        List<MartDetailDto> price = PRICE_PRIORITY_ROUTE.stream()
+                .filter(groupedByMartName::containsKey)
+                .map(name -> toMartDetail(groupedByMartName.get(name)))
+                .collect(Collectors.toList());
+
+        return new CartDetailGroupedResponseDto(
+                onlineDto,
+                new OfflineMartGroupDto(optimal, distance, price),
+                cart.getStatus().name()
+        );
     }
 
+    private MartDetailDto toMartDetail(List<RecommendationResult> results) {
+        RecommendationResult first = results.get(0);
+        Market mart = first.getMart();
+        boolean isOnline = mart.getType() == MartType.ONLINE;
+        double distance = isOnline ? 0.0 : first.getDistance();
+        String estimatedTime = isOnline ? "0분" : "30분";
+
+        List<ProductDetailDto> products = results.stream()
+                .map(r -> new ProductDetailDto(
+                        r.getProduct().getName(),
+                        r.getTotalPrice(),
+                        r.getPricePer100g()
+                )).collect(Collectors.toList());
+
+        return new MartDetailDto(
+                mart.getName(),
+                distance,
+                estimatedTime,
+                products.size(),
+                products.stream().mapToDouble(ProductDetailDto::getPrice).sum(),
+                products,
+                mart.getLatitude(),
+                mart.getLongitude()
+        );
+    }
 
 
 
@@ -283,6 +366,70 @@ public class AnalysisService {
         }
 
         cartRepository.delete(cart);
+    }
+
+
+    public GroupedCartDetailResponseDto getGroupedCartDetails(Long cartId) {
+        Cart cart = cartRepository.findById(cartId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 Cart가 존재하지 않습니다."));
+
+        Analysis analysis = cart.getAnalysis();
+
+        List<RecommendationResult> results = analysis.getRecommendationResults();
+
+        // 온라인 (쿠팡, mart_id = 5)
+        List<RecommendationResult> onlineResults = results.stream()
+                .filter(r -> r.getMart().getId() == 5)
+                .toList();
+
+        List<ProductDetailDto> onlineProducts = onlineResults.stream()
+                .map(r -> new ProductDetailDto(
+                        r.getProduct().getName(),
+                        r.getTotalPrice(),
+                        r.getPricePer100g()
+                )).toList();
+
+        OnlineMartDto onlineMartDto = new OnlineMartDto(
+                onlineProducts.size(),
+                onlineProducts.stream().mapToDouble(ProductDetailDto::getPrice).sum(),
+                onlineProducts
+        );
+
+        // 오프라인: 마트 이름 기준 그룹핑
+        Map<String, List<RecommendationResult>> offlineGrouped = results.stream()
+                .filter(r -> r.getMart().getType() == MartType.OFFLINE)
+                .collect(Collectors.groupingBy(r -> r.getMart().getName()));
+
+        List<MartDetailDto> offlineMartDtos = offlineGrouped.entrySet().stream()
+                .map(entry -> {
+                    List<RecommendationResult> martResults = entry.getValue();
+                    Market mart = martResults.get(0).getMart();
+
+
+                    List<ProductDetailDto> products = martResults.stream()
+                            .map(r -> new ProductDetailDto(
+                                    r.getProduct().getName(),
+                                    r.getTotalPrice(),
+                                    r.getPricePer100g()
+                            )).toList();
+
+                    return new MartDetailDto(
+                            mart.getName(),
+                            martResults.get(0).getDistance(),
+                            "30분",
+                            products.size(),
+                            products.stream().mapToDouble(ProductDetailDto::getPrice).sum(),
+                            products,
+                            mart.getLatitude(),
+                            mart.getLongitude()
+                    );
+                }).toList();
+
+        return new GroupedCartDetailResponseDto(
+                onlineMartDto,
+                offlineMartDtos,
+                cart.getStatus().name()
+        );
     }
 
 }
