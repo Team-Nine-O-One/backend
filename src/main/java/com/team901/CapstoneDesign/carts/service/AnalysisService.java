@@ -63,13 +63,16 @@ public class AnalysisService {
 
 
     public AnalysisResponseDto createAnalysis(AnalysisRequestDto requestDto) {
+
+        String fixedUserId = "1";
+
         // 1. Memo 조회
         Memo memo = memoRepository.findById(requestDto.getMemoId())
                 .orElseThrow(() -> new IllegalArgumentException("해당 메모가 존재하지 않습니다."));
 
         // 2. Cart 생성
         Cart cart = new Cart();
-        cart.setUserId(requestDto.getUserId());
+        cart.setUserId(fixedUserId);
         cart.setTitle(memo.getRawText());
         cart.setStatus(CartStatus.IN_PROGRESS);
         cart.setCreatedAt(LocalDateTime.now());
@@ -78,7 +81,7 @@ public class AnalysisService {
         // 3. Analysis 생성
         Analysis analysis = new Analysis();
         analysis.setCart(cart);
-        analysis.setUserId(requestDto.getUserId());
+        analysis.setUserId(fixedUserId);
         analysis.setCreatedAt(LocalDateTime.now());
         analysis.setPriceWeight(0.5);
         analysis.setDistanceWeight(0.5);
@@ -139,12 +142,15 @@ public class AnalysisService {
 
     public List<CartSummaryResponseDto> getCartsByUserAndStatus(String userId, CartStatus status) { // ⭐ 여기에 String priority 파라미터가 누락되었습니다!
 
+        String fakeId ="1";
+
         List<Cart> carts;
 
         if (status == null) {
-            carts = cartRepository.findByUserId(userId);
+            System.out.println("전달할 userId: " + fakeId);
+            carts = cartRepository.findByUserId(fakeId);
         } else {
-            carts = cartRepository.findByUserIdAndStatus(userId, status);
+            carts = cartRepository.findByUserIdAndStatus(fakeId, status);
         }
 
         return carts.stream().map(cart -> {
