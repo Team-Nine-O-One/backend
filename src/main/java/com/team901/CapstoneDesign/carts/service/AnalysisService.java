@@ -89,7 +89,7 @@ public class AnalysisService {
         analysisRepository.save(analysis);
 
         // 4. Memo → Analysis로 결과 연결
-        memoService.generateOptimizedMarketCartsAndBindToAnalysis(memo, analysis);
+        // memoService.generateOptimizedMarketCartsAndBindToAnalysis(memo, analysis);
 
         return new AnalysisResponseDto(
                 cart.getCartId(),
