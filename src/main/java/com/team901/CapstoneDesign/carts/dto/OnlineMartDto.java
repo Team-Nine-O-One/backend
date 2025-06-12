@@ -9,6 +9,7 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 public class OnlineMartDto {
+    private String martName;
     private int totalItems;
     private double totalPrice;
     private List<ProductDetailDto> products;
