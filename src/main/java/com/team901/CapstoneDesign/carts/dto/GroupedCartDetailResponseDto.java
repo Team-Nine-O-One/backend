@@ -13,5 +13,10 @@ public class GroupedCartDetailResponseDto {
     private OnlineMartDto onlineMart;
     private List<MartDetailDto> offlineMarts;
     private String status;
+
+    private List<String> optimalMartRoute;
+    private List<String> distancePriorityMartRoute;
+    private List<String> pricePriorityMartRoute;
+
 }
 
