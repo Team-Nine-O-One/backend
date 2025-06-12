@@ -47,7 +47,7 @@ public class MemoService {
     public Memo createMemoWithItems(MemoRequestDTO dto) {
         Memo memo = new Memo();
         memo.setRawText(dto.rawText);
-        memo.setUserId(dto.userId);
+        memo.setUserId("1");
         memo.setUserLat(dto.userLat);
         memo.setUserLng(dto.userLng);
         memo.setCreatedAt(new Date());

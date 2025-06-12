@@ -89,7 +89,7 @@ public class AnalysisService {
         analysisRepository.save(analysis);
 
         // 4. Memo → Analysis로 결과 연결
-        // memoService.generateOptimizedMarketCartsAndBindToAnalysis(memo, analysis);
+        //memoService.generateOptimizedMarketCartsAndBindToAnalysis(memo, analysis);
 
         return new AnalysisResponseDto(
                 cart.getCartId(),
@@ -265,8 +265,11 @@ public class AnalysisService {
                         r.getPricePer100g()
                 )).collect(Collectors.toList());
 
+        String onlineMartName = onlineResults.isEmpty() ? "온라인마트" : onlineResults.get(0).getMart().getName();
+
         double onlineTotalPrice = onlineProducts.stream().mapToDouble(ProductDetailDto::getPrice).sum();
         OnlineMartDto onlineDto = new OnlineMartDto(
+                onlineMartName,
                 onlineProducts.size(),
                 onlineTotalPrice,
                 onlineProducts
@@ -389,7 +392,10 @@ public class AnalysisService {
                         r.getPricePer100g()
                 )).toList();
 
+        String onlineMartName = onlineResults.isEmpty() ? "온라인 마트" : onlineResults.get(0).getMart().getName();
+
         OnlineMartDto onlineMartDto = new OnlineMartDto(
+                onlineMartName,
                 onlineProducts.size(),
                 onlineProducts.stream().mapToDouble(ProductDetailDto::getPrice).sum(),
                 onlineProducts
