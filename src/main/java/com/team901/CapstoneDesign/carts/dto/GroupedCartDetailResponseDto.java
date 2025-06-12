@@ -11,7 +11,11 @@ import java.util.List;
 @AllArgsConstructor
 public class GroupedCartDetailResponseDto {
     private OnlineMartDto onlineMart;
-    private List<MartDetailDto> offlineMarts;
+    //private List<MartDetailDto> offlineMarts;
+    RouteGroupedOfflineDto optimal;
+    RouteGroupedOfflineDto distance;
+    RouteGroupedOfflineDto price;
+
     private String status;
 
     private List<String> optimalMartRoute;
