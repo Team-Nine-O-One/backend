@@ -9,6 +9,7 @@ import com.team901.CapstoneDesign.dto.MarketCartResponseDTO;
 import com.team901.CapstoneDesign.dto.MemoRequestDTO;
 import com.team901.CapstoneDesign.entity.*;
 import com.team901.CapstoneDesign.mart.entity.Mart;
+import com.team901.CapstoneDesign.global.enums.MartType;
 import com.team901.CapstoneDesign.product.entity.Product;
 import com.team901.CapstoneDesign.product.repository.ProductRepository;
 import com.team901.CapstoneDesign.repository.*;
@@ -83,7 +84,7 @@ public class MemoService {
             cart.setUserLat(userLat);
             cart.setUserLng(userLng);
 
-            if (market.getType() == MarketType.OFFLINE) {
+            if (market.getType() == MartType.OFFLINE) {
                 cart.setDistanceFromUser(HaversineUtil.distance(userLat, userLng, market.getLatitude(), market.getLongitude()));
             }
 
@@ -199,7 +200,7 @@ public class MemoService {
             cart.setUserLat(userLat);
             cart.setUserLng(userLng);
 
-            if (market.getType() == MarketType.OFFLINE) {
+            if (market.getType() == MartType.OFFLINE) {
                 cart.setDistanceFromUser(HaversineUtil.distance(userLat, userLng, market.getLatitude(), market.getLongitude()));
                 System.out.println("📍 거리 계산됨: " + cart.getDistanceFromUser());
             }
