@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f03afcaa-f968-49fb-9fc8-8d8a39654268" name="변경" comment="장바구니 소유 로직 추가">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,7 +29,23 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="capstone" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="capstone" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="capstone" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -58,12 +75,14 @@
     &quot;assignee&quot;: &quot;sijin1017&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Team-Nine-O-One/backend.git&quot;,
-    &quot;accountId&quot;: &quot;ce57e23f-6425-4ab1-a23f-310ebe3df72c&quot;
-  }
-}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="277e0491-314a-400d-ad04-dc58c90d32e4" />
+        <option name="url" value="https://github.com/Team-Nine-O-One/backend.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="Security Analysis" />
   </component>
@@ -79,6 +98,7 @@
   "keyToString": {
     "Gradle.Build backend.executor": "Run",
     "Gradle.Build capstone.executor": "Run",
+    "Gradle.Capstone [bootJar].executor": "Run",
     "Gradle.Capstone [build].executor": "Run",
     "Gradle.Capstone 빌드.executor": "Run",
     "Gradle.MemoServiceTest.executor": "Run",
@@ -115,7 +135,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.CapstoneDesignApplication">
+  <component name="RunManager" selected="Gradle.Capstone [bootJar]">
     <configuration name="Capstone [bootJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -193,9 +213,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.Capstone [bootJar]" />
         <item itemvalue="Gradle.MemoServiceTest" />
         <item itemvalue="Gradle.Capstone [build]" />
-        <item itemvalue="Gradle.Capstone [bootJar]" />
         <item itemvalue="Gradle.MemoServiceTest" />
         <item itemvalue="Gradle.Capstone [build]" />
       </list>

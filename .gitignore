@@ -9,4 +9,4 @@ src/main/resources/application-dev.yml
 .idea/
 *.iml
 
-.idea/workspace.xml
+.idea/*
