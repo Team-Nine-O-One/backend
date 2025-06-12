@@ -173,12 +173,17 @@ public class AnalysisService {
                     .mapToDouble(CartMartSummaryDto::getTotalPrice)
                     .sum();
 
+            int totalItems = martSummaries.stream()
+                    .mapToInt(ms -> ms.getProductNames().size())
+                    .sum();
+
+
             // totalItems는 0으로 넘기고, 프론트에서 개수 계산
             return new CartSummaryResponseDto(
                     cart.getCartId(),
                     cart.getTitle(),
                     martSummaries,
-                    0,
+                    totalItems,
                     finalTotalPrice,
                     cart.getStatus().name(),
                     cart.getUpdatedAt(),
@@ -189,57 +194,6 @@ public class AnalysisService {
             );
         }).collect(Collectors.toList());
     }
-
-
-
-
-//    public CartDetailResponseDto getCartDetails(Long cartId) {
-//        Cart cart = cartRepository.findById(cartId)
-//                .orElseThrow(() -> new IllegalArgumentException("해당 Cart가 존재하지 않습니다."));
-//
-//        Analysis analysis = cart.getAnalysis();
-//
-//
-//        List<MartDetailDto> martDetails = analysis.getRecommendationResults().stream()
-//                .collect(Collectors.groupingBy(result -> result.getMart().getName()))
-//                .entrySet().stream()
-//                .map(entry -> {
-//
-//                    var firstResult = entry.getValue().get(0);
-//                    var mart = firstResult.getMart();
-//
-//                    List<ProductDetailDto> products = entry.getValue().stream()
-//                            .map(r -> new ProductDetailDto(
-//                                    r.getProduct().getName(),
-//                                    r.getTotalPrice(),
-//                                    r.getPricePer100g()
-//                            )).collect(Collectors.toList());
-//
-//                    boolean isOnline = entry.getValue().get(0).getMart().getType().name().equals("ONLINE");
-//                    Double distance = isOnline ? 0.0 : entry.getValue().get(0).getDistance();
-//                    String estimatedTime = isOnline ? "0분" : "30분";
-//
-//                    return new MartDetailDto(
-//                            entry.getKey(),
-//                            distance,
-//                            estimatedTime,
-//                            products.size(),
-//                            products.stream().mapToDouble(ProductDetailDto::getPrice).sum(),
-//                            products,
-//                            mart.getLatitude(),
-//                            mart.getLongitude()
-//                    );
-//                }).collect(Collectors.toList());
-//
-//        int onlineCount = (int) martDetails.stream().filter(m -> m.getDistance() == 0.0).count();
-//        int offlineCount = martDetails.size() - onlineCount;
-//
-//        return new CartDetailResponseDto(
-//                onlineCount,
-//                offlineCount,
-//                martDetails,
-//                cart.getStatus().name());
-//    }
 
 
     public CartDetailGroupedResponseDto getCartDetails(Long cartId) {
@@ -434,8 +388,12 @@ public class AnalysisService {
         return new GroupedCartDetailResponseDto(
                 onlineMartDto,
                 offlineMartDtos,
-                cart.getStatus().name()
+                cart.getStatus().name(),
+                OPTIMAL_ROUTE,
+                DISTANCE_PRIORITY_ROUTE,
+                PRICE_PRIORITY_ROUTE
         );
+
     }
 
 }
