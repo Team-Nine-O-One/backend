@@ -217,6 +217,9 @@ public class AnalysisService {
                 .filter(r -> r.getMart().getType() == MartType.OFFLINE)
                 .collect(Collectors.toList());
 
+        Map<String, List<RecommendationResult>> groupedByMartName = offlineResults.stream()
+                .collect(Collectors.groupingBy(r -> r.getMart().getName()));
+
         // 온라인 마트
         List<ProductDetailDto> onlineProducts = onlineResults.stream()
                 .map(r -> new ProductDetailDto(
@@ -236,8 +239,8 @@ public class AnalysisService {
         );
 
         // 오프라인 마트 루트별 분류
-        Map<String, List<RecommendationResult>> groupedByMartName = offlineResults.stream()
-                .collect(Collectors.groupingBy(r -> r.getMart().getName()));
+//        Map<String, List<RecommendationResult>> groupedByMartName = offlineResults.stream()
+//                .collect(Collectors.groupingBy(r -> r.getMart().getName()));
 
         List<MartDetailDto> optimal = OPTIMAL_ROUTE.stream()
                 .filter(groupedByMartName::containsKey)
@@ -265,7 +268,12 @@ public class AnalysisService {
         RecommendationResult first = results.get(0);
         Market mart = first.getMart();
         boolean isOnline = mart.getType() == MartType.ONLINE;
-        double distance = isOnline ? 0.0 : first.getDistance();
+
+        double distance = calculateDistance(
+                37.5025, 126.9822, // 중앙대 310관
+                mart.getLatitude(), mart.getLongitude()
+        );
+
         String estimatedTime = isOnline ? "0분" : "30분";
 
         List<ProductDetailDto> products = results.stream()
@@ -287,6 +295,19 @@ public class AnalysisService {
         );
     }
 
+
+
+    // 하드코딩 계산
+    private double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
+        final int R = 6371; // km 단위 지구 반지름
+        double latDistance = Math.toRadians(lat2 - lat1);
+        double lonDistance = Math.toRadians(lon2 - lon1);
+        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+                + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
+                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return Math.round(R * c * 100.0) / 100.0; // km, 소수점 2자리까지
+    }
 
 
     public ConfirmCartResponseDto confirmCart(Long cartId) {
@@ -366,39 +387,32 @@ public class AnalysisService {
                 .filter(r -> r.getMart().getType() == MartType.OFFLINE)
                 .collect(Collectors.groupingBy(r -> r.getMart().getName()));
 
-        List<MartDetailDto> offlineMartDtos = offlineGrouped.entrySet().stream()
-                .map(entry -> {
-                    List<RecommendationResult> martResults = entry.getValue();
-                    Market mart = martResults.get(0).getMart();
+        List<MartDetailDto> optimal = OPTIMAL_ROUTE.stream()
+                .filter(offlineGrouped::containsKey)
+                .map(name -> toMartDetail(offlineGrouped.get(name)))
+                .collect(Collectors.toList());
 
+        List<MartDetailDto> distance = DISTANCE_PRIORITY_ROUTE.stream()
+                .filter(offlineGrouped::containsKey)
+                .map(name -> toMartDetail(offlineGrouped.get(name)))
+                .collect(Collectors.toList());
 
-                    List<ProductDetailDto> products = martResults.stream()
-                            .map(r -> new ProductDetailDto(
-                                    r.getProduct().getName(),
-                                    r.getTotalPrice(),
-                                    r.getPricePer100g()
-                            )).toList();
-
-                    return new MartDetailDto(
-                            mart.getName(),
-                            martResults.get(0).getDistance(),
-                            "30분",
-                            products.size(),
-                            products.stream().mapToDouble(ProductDetailDto::getPrice).sum(),
-                            products,
-                            mart.getLatitude(),
-                            mart.getLongitude()
-                    );
-                }).toList();
+        List<MartDetailDto> price = PRICE_PRIORITY_ROUTE.stream()
+                .filter(offlineGrouped::containsKey)
+                .map(name -> toMartDetail(offlineGrouped.get(name)))
+                .collect(Collectors.toList());
 
         return new GroupedCartDetailResponseDto(
                 onlineMartDto,
-                offlineMartDtos,
+                new RouteGroupedOfflineDto("최적 경로", optimal),
+                new RouteGroupedOfflineDto("거리 우선 경로", distance),
+                new RouteGroupedOfflineDto("가격 우선 경로", price),
                 cart.getStatus().name(),
                 OPTIMAL_ROUTE,
                 DISTANCE_PRIORITY_ROUTE,
                 PRICE_PRIORITY_ROUTE
         );
+
 
     }
 
