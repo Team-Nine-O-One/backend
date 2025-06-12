@@ -1,5 +1,6 @@
 package com.team901.CapstoneDesign.entity;
 
+import com.team901.CapstoneDesign.global.enums.MartType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,8 +16,13 @@ public class Market {
 
     private String name;
 
+//    @Enumerated(EnumType.STRING)
+//    private MarketType type; // ONLINE, OFFLINE
+
     @Enumerated(EnumType.STRING)
-    private MarketType type; // ONLINE, OFFLINE
+    @Column(name = "type")
+    private MartType type;
+
 
     private String address;
     private Double latitude;
