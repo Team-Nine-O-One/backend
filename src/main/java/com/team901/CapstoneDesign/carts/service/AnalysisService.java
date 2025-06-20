@@ -26,9 +26,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,25 +39,6 @@ public class AnalysisService {
     private final MartRepository martRepository;
     private final MemoService memoService;
     private final MemoRepository memoRepository;
-
-
-    private static final List<String> PRICE_PRIORITY_ROUTE = Arrays.asList(
-            "이마트에브리데이 흑석동점",  // market_id = 1
-            "홈플러스익스프레스 상도2점", // market_id = 2
-            "GS더프레시 동작상도점",     // market_id = 3
-            "하나로마트 흑석점"          // market_id = 4
-    );
-
-    private static final List<String> DISTANCE_PRIORITY_ROUTE = Arrays.asList(
-            "이마트에브리데이 흑석동점",  // market_id = 1
-            "홈플러스익스프레스 상도2점"  // market_id = 2
-    );
-
-    private static final List<String> OPTIMAL_ROUTE = Arrays.asList(
-            "이마트에브리데이 흑석동점",  // market_id = 1
-            "홈플러스익스프레스 상도2점", // market_id = 2
-            "GS더프레시 동작상도점"      // market_id = 3
-    );
 
 
     public AnalysisResponseDto createAnalysis(AnalysisRequestDto requestDto) {
@@ -90,9 +69,6 @@ public class AnalysisService {
         analysis.setUserLongitude(memo.getUserLng());
 
         analysisRepository.save(analysis);
-
-        // 4. Memo → Analysis로 결과 연결
-        //memoService.generateOptimizedMarketCartsAndBindToAnalysis(memo, analysis);
 
         return new AnalysisResponseDto(
                 cart.getCartId(),
@@ -137,20 +113,16 @@ public class AnalysisService {
 
 
 
-
-
-
     public List<CartSummaryResponseDto> getCartsByUserAndStatus(String userId, CartStatus status) { // ⭐ 여기에 String priority 파라미터가 누락되었습니다!
 
-        String fakeId ="1";
 
         List<Cart> carts;
 
         if (status == null) {
-            System.out.println("전달할 userId: " + fakeId);
-            carts = cartRepository.findByUserId(fakeId);
+            System.out.println("전달할 userId: " + userId);
+            carts = cartRepository.findByUserId(userId);
         } else {
-            carts = cartRepository.findByUserIdAndStatus(fakeId, status);
+            carts = cartRepository.findByUserIdAndStatus(userId, status);
         }
 
         return carts.stream().map(cart -> {
@@ -194,9 +166,9 @@ public class AnalysisService {
                     cart.getStatus().name(),
                     cart.getUpdatedAt(),
                     cart.getStatus() == CartStatus.COMPLETED,
-                    OPTIMAL_ROUTE, // 최적 루트
-                    DISTANCE_PRIORITY_ROUTE, // 거리 우선 루트
-                    PRICE_PRIORITY_ROUTE // 가격 우선 루트
+                    Collections.emptyList(), // OPTIMAL_ROUTE
+                    Collections.emptyList(), // DISTANCE_PRIORITY_ROUTE
+                    Collections.emptyList()  // PRICE_PRIORITY_ROUTE
             );
         }).collect(Collectors.toList());
     }
@@ -242,26 +214,30 @@ public class AnalysisService {
 //        Map<String, List<RecommendationResult>> groupedByMartName = offlineResults.stream()
 //                .collect(Collectors.groupingBy(r -> r.getMart().getName()));
 
-        List<MartDetailDto> optimal = OPTIMAL_ROUTE.stream()
-                .filter(groupedByMartName::containsKey)
-                .map(name -> toMartDetail(groupedByMartName.get(name)))
+        List<MartDetailDto> priceSorted = groupedByMartName.values().stream()
+                .map(this::toMartDetail)
+                .sorted(Comparator.comparingDouble(MartDetailDto::getTotalPrice))
                 .collect(Collectors.toList());
 
-        List<MartDetailDto> distance = DISTANCE_PRIORITY_ROUTE.stream()
-                .filter(groupedByMartName::containsKey)
-                .map(name -> toMartDetail(groupedByMartName.get(name)))
+        List<MartDetailDto> distanceSorted = groupedByMartName.values().stream()
+                .map(this::toMartDetail)
+                .sorted(Comparator.comparingDouble(MartDetailDto::getDistance))
                 .collect(Collectors.toList());
 
-        List<MartDetailDto> price = PRICE_PRIORITY_ROUTE.stream()
-                .filter(groupedByMartName::containsKey)
-                .map(name -> toMartDetail(groupedByMartName.get(name)))
+        List<MartDetailDto> noPriority = groupedByMartName.values().stream()
+                .map(this::toMartDetail)
                 .collect(Collectors.toList());
 
         return new CartDetailGroupedResponseDto(
                 onlineDto,
-                new OfflineMartGroupDto(optimal, distance, price),
+                new OfflineMartGroupDto(
+                        noPriority,        // "최적" 혹은 기본
+                        distanceSorted,
+                        priceSorted
+                ),
                 cart.getStatus().name()
         );
+
     }
 
     private MartDetailDto toMartDetail(List<RecommendationResult> results) {
@@ -387,20 +363,18 @@ public class AnalysisService {
                 .filter(r -> r.getMart().getType() == MartType.OFFLINE)
                 .collect(Collectors.groupingBy(r -> r.getMart().getName()));
 
-        List<MartDetailDto> optimal = OPTIMAL_ROUTE.stream()
-                .filter(offlineGrouped::containsKey)
-                .map(name -> toMartDetail(offlineGrouped.get(name)))
-                .collect(Collectors.toList());
+        List<MartDetailDto> allOffline = offlineGrouped.values().stream()
+                .map(this::toMartDetail)
+                .toList();
 
-        List<MartDetailDto> distance = DISTANCE_PRIORITY_ROUTE.stream()
-                .filter(offlineGrouped::containsKey)
-                .map(name -> toMartDetail(offlineGrouped.get(name)))
-                .collect(Collectors.toList());
+        List<MartDetailDto> optimal = new ArrayList<>(allOffline); // 최적 경로: 그냥 전체
+        List<MartDetailDto> distance = allOffline.stream()
+                .sorted(Comparator.comparingDouble(MartDetailDto::getDistance))
+                .toList();
 
-        List<MartDetailDto> price = PRICE_PRIORITY_ROUTE.stream()
-                .filter(offlineGrouped::containsKey)
-                .map(name -> toMartDetail(offlineGrouped.get(name)))
-                .collect(Collectors.toList());
+        List<MartDetailDto> price = allOffline.stream()
+                .sorted(Comparator.comparingDouble(MartDetailDto::getTotalPrice))
+                .toList();
 
         return new GroupedCartDetailResponseDto(
                 onlineMartDto,
@@ -408,11 +382,10 @@ public class AnalysisService {
                 new RouteGroupedOfflineDto("거리 우선 경로", distance),
                 new RouteGroupedOfflineDto("가격 우선 경로", price),
                 cart.getStatus().name(),
-                OPTIMAL_ROUTE,
-                DISTANCE_PRIORITY_ROUTE,
-                PRICE_PRIORITY_ROUTE
+                optimal.stream().map(MartDetailDto::getMartName).toList(),
+                distance.stream().map(MartDetailDto::getMartName).toList(),
+                price.stream().map(MartDetailDto::getMartName).toList()
         );
-
 
     }
 

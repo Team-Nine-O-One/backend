@@ -342,34 +342,6 @@ public class MemoService {
 
 
     // 최적화 결과를 분석쪽으로
-//    @Transactional
-//    public void generateOptimizedMarketCartsAndBindToAnalysis(Memo memo, Analysis analysis) {
-//        // 1. 추천 결과 생성 (이미 메모 저장된 상태)
-//        generateOptimizedMarketCarts(memo.getId(), memo.getUserLat(), memo.getUserLng());
-//
-//        // 2. 추천 결과 조회
-//        List<OptimizedResult> results = optimizedResultRepository.findByMemo(memo);
-//
-//        // 3. RecommendationResult로 변환하여 Analysis에 연결
-//        for (OptimizedResult result : results) {
-//            RecommendationResult rr = new RecommendationResult();
-//            rr.setAnalysis(analysis);
-//
-//            // 마트
-//            Market mart = marketRepo.findByName(result.getMarketName())
-//                    .orElseThrow(() -> new RuntimeException("마트를 찾을 수 없습니다."));
-//            rr.setMart(mart);
-//
-//            rr.setTotalPrice((double) result.getTotalPrice());
-//            rr.setDistance(result.getDistance());
-//            rr.setDeliveryFee(0.0);
-//            rr.setScore(0.0);
-//            recommendationResultRepository.save(rr);
-//        }
-//    }
-
-
-    // 최적화 결과를 분석쪽으로
     @Transactional
     public void generateOptimizedMarketCartsAndBindToAnalysis(Memo memo, Analysis analysis) {
 
