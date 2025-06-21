@@ -19,4 +19,17 @@ public class OptimizedResultItem {
     private String memoItemName;
     private String productName;
     private int price;
+
+
+    public void setMemoItem(MemoItem item) {
+    }
+
+    public void setMarket(Market market) {
+    }
+
+    public void setProducts(Products product) {
+    }
+
+    public void setOnline(boolean b) {
+    }
 }

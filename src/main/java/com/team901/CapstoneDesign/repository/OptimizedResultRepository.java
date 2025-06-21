@@ -11,10 +11,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface OptimizedResultRepository extends JpaRepository<OptimizedResult, Long> {
-    List<OptimizedResult> findByMemoId(Long memoId);
+    Optional<OptimizedResult> findByMemoId(Long memoId);
 
     @Query("SELECT r FROM OptimizedResult r LEFT JOIN FETCH r.items WHERE r.memo = :memo")
     List<OptimizedResult> findByMemo(@Param("memo") Memo memo);
+
 
 
     Optional<OptimizedResult> findByMemoIdAndMarketName(Long memoId, String marketName);

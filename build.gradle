@@ -15,6 +15,7 @@ configurations {
 
 
 
+
 repositories {
     mavenCentral()
 }
@@ -49,6 +50,8 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.3'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.15.3'
     implementation 'com.google.http-client:google-http-client-jackson2:1.32.1'
+    // https://mvnrepository.com/artifact/com.google.ortools/ortools-java
+    implementation("com.google.ortools:ortools-java:9.11.4210")
 }
 
 

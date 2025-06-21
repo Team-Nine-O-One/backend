@@ -33,4 +33,8 @@ public class Market {
 
     @OneToMany(mappedBy = "market", cascade = CascadeType.ALL)
     private List<MarketCart> marketCarts = new ArrayList<>();
+
+    public boolean isOnline() {
+        return this.type.name().equals("ONLINE");
+    }
 }

@@ -4,10 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f03afcaa-f968-49fb-9fc8-8d8a39654268" name="변경" comment="gitignore">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/service/YouTubeSTTProcessor.java" afterDir="false" />
+    <list default="true" id="f03afcaa-f968-49fb-9fc8-8d8a39654268" name="변경" comment="STT최적화">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/entity/OfflineCombinationResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/repository/OfflineCombinationResultRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/service/DistanceMatrixService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/service/TSPSolver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/controller/CrawlerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/controller/CrawlerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/entity/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/entity/Market.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/entity/MemoItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/entity/MemoItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/entity/OptimizedResultItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/entity/OptimizedResultItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/repository/OptimizedResultRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/repository/OptimizedResultRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/service/MemoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/service/MemoService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -255,7 +263,7 @@
       <workItem from="1749745130326" duration="2241000" />
       <workItem from="1749974166624" duration="9000" />
       <workItem from="1750047246081" duration="8000" />
-      <workItem from="1750508039136" duration="1319000" />
+      <workItem from="1750508039136" duration="5133000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore 수정">
       <option name="closed" value="true" />
@@ -409,7 +417,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750508115065</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="STT최적화">
+      <option name="closed" value="true" />
+      <created>1750509574490</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1750509574490</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -455,7 +471,8 @@
     <MESSAGE value="장보기 완료 및 히스토리 저장 api 테스트 완료" />
     <MESSAGE value="장바구니 소유 로직 추가" />
     <MESSAGE value="gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="gitignore" />
+    <MESSAGE value="STT최적화" />
+    <option name="LAST_COMMIT_MESSAGE" value="STT최적화" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -38,6 +38,9 @@ public class MemoService {
     @Autowired private OptimizedResultRepository optimizedResultRepository;
     @Autowired private OptimizedResultItemRepository optimizedResultItemRepository;
     @Autowired private ScoreRepository scoreRepository;
+    @Autowired
+    private OfflineCombinationResultRepository offlineCombinationResultRepository;
+    private final DistanceMatrixService distanceMatrixService;
 
     @Autowired
     private RecommendationResultRepository recommendationResultRepository;
@@ -145,7 +148,7 @@ public class MemoService {
         }
         prompt.append("\n");
         prompt.append("메모 내용: ").append(memoItem.getName()).append(" ").append(memoItem.getQuantity()).append("\n");
-        prompt.append("위의 상품 중에서 가장 유사한 3가지를 골라주세요. 이름만 반환하세요.");
+        prompt.append("위의 상품 중에서 가장 적절한 상품을 하나만 골라주세요. 이름만 반환하세요.");
 
         String promptStr = prompt.toString();
         System.out.println("📨 GPT 요청 프롬프트:\n" + promptStr);
@@ -340,6 +343,91 @@ public class MemoService {
         return dto;
     }
 
+    @Transactional
+    public void optimizeOfflineMarketCombinations(Long memoId) {
+        Memo memo = memoRepo.findByIdWithItems(memoId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid memo ID"));
+
+        // 온라인으로 확정되지 않은 품목만 대상으로
+        List<MemoItem> remainingItems = memo.getMemoItems().stream()
+                .filter(item -> !item.isPurchasedOnline())
+                .collect(Collectors.toList());
+
+        // 오프라인 마트만 필터링
+        List<Market> offlineMarkets = marketRepo.findAll().stream()
+                .filter(market -> !market.isOnline())
+                .collect(Collectors.toList());
+
+        // 모든 조합 생성 (1개 ~ 4개 선택)
+        List<List<Market>> marketCombinations = generateCombinations(offlineMarkets, 1, 4);
+
+        for (List<Market> marketCombo : marketCombinations) {
+            int totalPrice = 0;
+
+            for (MemoItem item : remainingItems) {
+                // 추천된 상품 중에서 현재 조합의 마트에 속한 상품만 필터링
+                List<MemoItemProduct> candidates = memoItemProductRepository.findByMemoItemAndRecommendedTrue(item).stream()
+                        .filter(p -> marketCombo.contains(p.getProducts().getMarket()))
+                        .collect(Collectors.toList());
+
+                Optional<MemoItemProduct> cheapest = candidates.stream()
+                        .min(Comparator.comparingInt(p -> p.getProducts().getPrice()));
+
+                if (cheapest.isPresent()) {
+                    totalPrice += cheapest.get().getProducts().getPrice();
+                } else {
+                    // 해당 품목을 이 마트 조합에서는 살 수 없음 → 이 조합은 무효
+                    totalPrice = Integer.MAX_VALUE;
+                    break;
+                }
+            }
+
+            if (totalPrice < Integer.MAX_VALUE) {
+                // 유효한 조합일 경우 DTO나 Entity로 저장 (예시)
+                OfflineCombinationResult result = new OfflineCombinationResult();
+                result.setMemo(memo);
+                result.setMarkets(marketCombo);
+                result.setTotalPrice(totalPrice);
+
+                calculateAndSaveTspDistance(result); // ✅ 추가된 거리 계산
+
+                offlineCombinationResultRepository.save(result); // ✅ 계산 후 저장
+            }
+        }
+    }
+
+    // 조합 생성 유틸 메서드
+    private void calculateAndSaveTspDistance(OfflineCombinationResult result) {
+        List<Market> markets = result.getMarkets();
+        double[][] distanceMatrix = distanceMatrixService.buildMatrix(markets); // 또는 직접 생성
+
+        long tspDistance = TSPSolver.solveTsp(distanceMatrix);
+        result.setTotalDistance((double) tspDistance);
+    }
+
+    private <T> List<List<T>> generateCombinations(List<T> items, int min, int max) {
+        List<List<T>> result = new ArrayList<>();
+        int n = items.size();
+        for (int r = min; r <= max; r++) {
+            combineRecursive(items, result, new ArrayList<>(), 0, n, r);
+        }
+        return result;
+    }
+
+    private <T> void combineRecursive(List<T> items, List<List<T>> result,
+                                      List<T> temp, int start, int n, int r) {
+        if (r == 0) {
+            result.add(new ArrayList<>(temp));
+            return;
+        }
+        for (int i = start; i < n; i++) {
+            temp.add(items.get(i));
+            combineRecursive(items, result, temp, i + 1, n, r - 1);
+            temp.remove(temp.size() - 1);
+        }
+    }
+
+
 
     // 최적화 결과를 분석쪽으로
     @Transactional
@@ -393,6 +481,74 @@ public class MemoService {
             }
         }
     }
+
+    @Transactional
+    public void splitOnlineOfflineSelections(Long memoId) {
+        Memo memo = memoRepo.findByIdWithItems(memoId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid memo ID"));
+
+        List<MemoItem> items = memo.getMemoItems();
+        OptimizedResult optimizedResult = optimizedResultRepository.findByMemoId(memoId)
+                .orElseThrow(() -> new IllegalStateException("No OptimizedResult found"));
+
+        for (MemoItem item : items) {
+            // 추천된 상품 중에서 필터링
+            List<MemoItemProduct> recommended = memoItemProductRepository.findByMemoItemAndRecommendedTrue(item);
+
+            // 온라인 최저가
+            Optional<MemoItemProduct> onlineBest = recommended.stream()
+                    .filter(p -> p.getProducts().getMarket().isOnline())
+                    .min(Comparator.comparingInt(p -> p.getProducts().getPrice()));
+
+            // 오프라인 최저가
+            Optional<MemoItemProduct> offlineBest = recommended.stream()
+                    .filter(p -> !p.getProducts().getMarket().isOnline())
+                    .min(Comparator.comparingInt(p -> p.getProducts().getPrice()));
+
+            // 둘 다 있을 경우 비교
+            if (onlineBest.isPresent() && offlineBest.isPresent()) {
+                int onlinePrice = onlineBest.get().getProducts().getPrice();
+                int offlinePrice = offlineBest.get().getProducts().getPrice();
+
+                if (onlinePrice < offlinePrice) {
+                    // 온라인이 더 쌈 → 온라인 구매 확정
+                    Products product = onlineBest.get().getProducts();
+
+                    OptimizedResultItem resultItem = new OptimizedResultItem();
+                    resultItem.setMemoItem(item);
+                    resultItem.setOptimizedResult(optimizedResult);
+                    resultItem.setMarket(product.getMarket());
+                    resultItem.setProducts(product);
+                    resultItem.setPrice(product.getPrice());
+                    resultItem.setOnline(true); // ← 구분 플래그
+
+                    optimizedResultItemRepository.save(resultItem);
+
+                    // 추후 offline 최적화에서 제외될 수 있게 별도 리스트나 상태 저장 가능
+                    item.setPurchasedOnline(true); // 예시: MemoItem에 boolean 필드 추가
+                }
+            }
+        }
+    }
+
+    public void calculateOfflineCombinationScores(Long memoId, double priceWeight, double distanceWeight) {
+        List<OfflineCombinationResult> results = offlineCombinationResultRepository.findByMemoId(memoId);
+        int minPrice = results.stream().mapToInt(OfflineCombinationResult::getTotalPrice).min().orElse(0);
+        int maxPrice = results.stream().mapToInt(OfflineCombinationResult::getTotalPrice).max().orElse(1);
+        double minDistance = results.stream().mapToDouble(OfflineCombinationResult::getTotalDistance).min().orElse(0);
+        double maxDistance = results.stream().mapToDouble(OfflineCombinationResult::getTotalDistance).max().orElse(1);
+
+        for (OfflineCombinationResult result : results) {
+            double normalizedPrice = (result.getTotalPrice() - minPrice) / (double)(maxPrice - minPrice);
+            double normalizedDistance = (result.getTotalDistance() - minDistance) / (maxDistance - minDistance);
+
+            double score = (normalizedPrice * priceWeight) + (normalizedDistance * distanceWeight);
+            result.setScore(score);
+            offlineCombinationResultRepository.save(result);
+        }
+    }
+
+
 
 
 }

@@ -25,4 +25,14 @@ public class MemoItem {
 
     @OneToMany(mappedBy = "memoItem", cascade = CascadeType.ALL)
     private List<MarketCartItem> marketCartItems = new ArrayList<>();
+
+    @Column(nullable = false)
+    private boolean purchasedOnline= false;
+
+    public void setPurchasedOnline(boolean b) {
+        this.purchasedOnline = purchasedOnline;
+    }
+    public boolean isPurchasedOnline() {
+        return this.purchasedOnline;
+    }
 }
