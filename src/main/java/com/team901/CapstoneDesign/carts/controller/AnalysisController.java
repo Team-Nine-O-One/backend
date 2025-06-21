@@ -3,6 +3,7 @@ package com.team901.CapstoneDesign.carts.controller;
 import com.team901.CapstoneDesign.carts.dto.*;
 import com.team901.CapstoneDesign.carts.service.AnalysisService;
 
+import com.team901.CapstoneDesign.dto.BestOptimizedResultDTO;
 import com.team901.CapstoneDesign.global.enums.CartStatus;
 import com.team901.CapstoneDesign.mart.repository.MartRepository;
 import com.team901.CapstoneDesign.product.repository.ProductRepository;
@@ -27,6 +28,15 @@ public class AnalysisController {
         return ResponseEntity.status(201).body(responseDto);
     }
 
+    @Operation(summary = "최적화 전체 실행", description = "GPT 추천부터 최종 선택까지 자동 실행")
+    @PostMapping("/{memoId}/optimize")
+    public ResponseEntity<BestOptimizedResultDTO> optimizeAll(
+            @PathVariable Long memoId,
+            @RequestParam(defaultValue = "BALANCED") String option
+    ) {
+        BestOptimizedResultDTO response = analysisService.optimizeMemo(memoId, option);
+        return ResponseEntity.ok(response);
+    }
 
     @PatchMapping("/{cartId}/reanalyze")
     @Operation(summary = "분석 재실행", description = "가중치 변경에 따른 재분석 실행")

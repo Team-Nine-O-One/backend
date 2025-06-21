@@ -52,6 +52,8 @@ dependencies {
     implementation 'com.google.http-client:google-http-client-jackson2:1.32.1'
     // https://mvnrepository.com/artifact/com.google.ortools/ortools-java
     implementation("com.google.ortools:ortools-java:9.11.4210")
+
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
 }
 
 

@@ -550,5 +550,26 @@ public class MemoService {
 
 
 
+    @Transactional
+    public BestOptimizedResultDTO optimizeAll(Long memoId, String option) {
+        Memo memo = memoRepo.findByIdWithItems(memoId).orElseThrow();
+
+        // Step 1~2: GPT 추천 + 최저가 + 온라인 분리
+        generateOptimizedMarketCarts(memoId, memo.getUserLat(), memo.getUserLng());
+        splitOnlineOfflineSelections(memoId);
+
+        // Step 3~4: 오프라인 조합 최적화 + 거리 계산
+        optimizeOfflineMarketCombinations(memoId);
+
+        // Step 5: 점수 계산
+        switch (option.toUpperCase()) {
+            case "PRICE" -> calculateOfflineCombinationScores(memoId, 0.8, 0.2);
+            case "DISTANCE" -> calculateOfflineCombinationScores(memoId, 0.2, 0.8);
+            default -> calculateOfflineCombinationScores(memoId, 0.5, 0.5); // BALANCED
+        }
+
+        // Step 6: 최적 결과 반환
+        return getBestOptimizedResultForMemo(memoId);
+    }
 
 }

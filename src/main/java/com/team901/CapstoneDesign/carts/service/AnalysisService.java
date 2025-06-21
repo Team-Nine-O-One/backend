@@ -1,6 +1,7 @@
 package com.team901.CapstoneDesign.carts.service;
 
 import com.team901.CapstoneDesign.carts.dto.*;
+import com.team901.CapstoneDesign.dto.BestOptimizedResultDTO;
 import com.team901.CapstoneDesign.entity.Market;
 import com.team901.CapstoneDesign.entity.Memo;
 import com.team901.CapstoneDesign.repository.MemoItemRepository;
@@ -387,6 +388,10 @@ public class AnalysisService {
                 price.stream().map(MartDetailDto::getMartName).toList()
         );
 
+    }
+
+    public BestOptimizedResultDTO optimizeMemo(Long memoId, String option) {
+        return memoService.optimizeAll(memoId, option);
     }
 
 }
