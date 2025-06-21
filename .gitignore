@@ -10,3 +10,9 @@ src/main/resources/application-dev.yml
 *.iml
 
 .idea/*
+
+
+bin/
+*.exe
+*.7z
+*.zip

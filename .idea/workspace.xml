@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f03afcaa-f968-49fb-9fc8-8d8a39654268" name="변경" comment="gitignore">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/service/YouTubeSTTProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/controller/CrawlerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/team901/CapstoneDesign/GPT/controller/CrawlerController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -253,6 +255,7 @@
       <workItem from="1749745130326" duration="2241000" />
       <workItem from="1749974166624" duration="9000" />
       <workItem from="1750047246081" duration="8000" />
+      <workItem from="1750508039136" duration="1319000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore 수정">
       <option name="closed" value="true" />
@@ -398,7 +401,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749720877602</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="gitignore">
+      <option name="closed" value="true" />
+      <created>1750508115065</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1750508115065</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
